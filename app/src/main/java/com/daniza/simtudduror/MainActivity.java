@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         View view=binding.getRoot();
         setContentView(view);
 
-        gotoFragment(new HomeFragment(),null);
+        gotoFragment(new HomeFragment(),null,false);
     }
 
     @Override
@@ -34,10 +34,18 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private void gotoFragment(Fragment fragment, Bundle bundle){
+    public void gotoFragment(Fragment fragment, Bundle bundle, boolean addToBackstack){
         fragment.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction()
-                .replace(binding.container.getId(),fragment)
-                .commit();
+
+        if(addToBackstack) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(binding.container.getId(), fragment)
+                    .addToBackStack(null)
+                    .commit();
+        }else{
+            getSupportFragmentManager().beginTransaction()
+                    .replace(binding.container.getId(),fragment)
+                    .commit();
+        }
     }
 }

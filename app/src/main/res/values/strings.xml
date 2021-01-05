@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Simtudduror 2021 Terbaru</string>
+
+    <string-array name="icon_list_name">
+        <item>I</item>
+        <item>A</item>
+        <item>B</item>
+        <item>T</item>
+        <item>G</item>
+        <item>R</item>
+    </string-array>
+
+    <string-array name="list_name">
+        <item>SATU</item>
+        <item>DUA</item>
+        <item>TIGA</item>
+        <item>EMPAT</item>
+        <item>LIMA</item>
+        <item>ENAM</item>
+    </string-array>
 </resources>
