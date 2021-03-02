@@ -10,4 +10,5 @@
     <color name="bg_primary_dark">#1A2C55</color>
     <color name="bg_primary_light">#fff</color>
     <color name="bg_grey">#A5A5A5</color>
+    <color name="bg_white_cool">#FFFAF0</color>
 </resources>
