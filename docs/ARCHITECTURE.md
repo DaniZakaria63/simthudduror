@@ -203,3 +203,20 @@ Verification evidence (screenshots, logs) lives in [VERIFICATION.md](VERIFICATIO
   bookmarks would be new feature modules.
 - The legacy `DayNight` theme is not reproduced; the product colors are fixed (navy/cream), matching
   the screens the legacy app actually rendered.
+
+## 12. Intentional visual differences from the legacy build
+
+The migration is behavior-faithful, but three details were corrected because the legacy implementation
+did not render as its author intended. Each is a visible, deliberate choice:
+
+1. **Sheet fills the viewport.** The legacy `RecyclerView` had `minHeight=530dp` and the
+   `NestedScrollView` child was measured as wrap-content, so on tall screens the white sheet stopped
+   above the bottom and left a navy band. The React Native sheet grows to the bottom (`flexGrow`
+   footer) while keeping the legacy 530dp minimum in documented form (`layout.sheetMinHeight`).
+2. **Hero image is letterboxed, not stretched.** The legacy `ImageView` had no `src`; the photo was an
+   Android `background` drawable, which stretches to the view bounds. The author's intent was clearly
+   `centerInside` (it is written in the XML), so the RN hero uses `resizeMode="contain"` and avoids the
+   legacy distortion on non-matching aspect ratios.
+3. **Reader chrome.** The reader adds a translucent title/back bar for an explicit back affordance.
+   Legacy relied only on the system back button; Android hardware back still works because the reader
+   is a normal native-stack screen.
