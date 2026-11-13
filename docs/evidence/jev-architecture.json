@@ -1,0 +1,52 @@
+{
+  "model": "jev-1.14.0",
+  "usage": {
+    "input_tokens": 1415,
+    "output_tokens": 203
+  },
+  "answers": {
+    "language": {
+      "type": "choice",
+      "choice": "typescript",
+      "confidence": 0.96,
+      "probabilities": {
+        "typescript": 0.98,
+        "javascript": 0.02
+      }
+    },
+    "navigation": {
+      "type": "choice",
+      "choice": "react_navigation_native_stack",
+      "confidence": 0.92,
+      "probabilities": {
+        "react_navigation_native_stack": 0.95,
+        "custom_lightweight_navigator": 0.05,
+        "expo_router": 0.0
+      }
+    },
+    "reader_zoom": {
+      "type": "choice",
+      "choice": "core_animated_panresponder",
+      "confidence": 0.8,
+      "probabilities": {
+        "reanimated_gesture_handler": 0.13,
+        "core_animated_panresponder": 0.87,
+        "plain_image": 0.0
+      }
+    },
+    "styling": {
+      "type": "choice",
+      "choice": "theme_tokens_stylesheet",
+      "confidence": 0.98,
+      "probabilities": {
+        "theme_tokens_stylesheet": 0.99,
+        "nativewind": 0.01,
+        "styled_components": 0.0
+      }
+    },
+    "native_deps_risk": {
+      "type": "noul",
+      "noul": 0.77
+    }
+  }
+}

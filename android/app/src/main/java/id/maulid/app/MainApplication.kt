@@ -1,4 +1,4 @@
-package com.daniza.simtudduror
+package id.maulid.app
 
 import android.app.Application
 import com.facebook.react.PackageList

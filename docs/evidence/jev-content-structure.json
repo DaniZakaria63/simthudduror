@@ -1,0 +1,73 @@
+{
+  "model": "jev-1.14.0",
+  "usage": {
+    "input_tokens": 1374,
+    "output_tokens": 283
+  },
+  "answers": {
+    "content_model": {
+      "type": "choice",
+      "choice": "image_pages",
+      "confidence": 0.96,
+      "probabilities": {
+        "image_pages": 0.97,
+        "text_pages": 0.0,
+        "hybrid": 0.03
+      }
+    },
+    "catalog_labels": {
+      "type": "choice",
+      "choice": "keep_legacy",
+      "confidence": 0.98,
+      "probabilities": {
+        "keep_legacy": 0.99,
+        "meaningful_titles": 0.0,
+        "hybrid_labels": 0.01
+      }
+    },
+    "grid_impl": {
+      "type": "choice",
+      "choice": "flatlist_num_columns",
+      "confidence": 0.96,
+      "probabilities": {
+        "flatlist_num_columns": 0.97,
+        "flexwrap_scrollview": 0.03,
+        "sectionlist": 0.0
+      }
+    },
+    "state_management": {
+      "type": "choice",
+      "choice": "none_local",
+      "confidence": 0.92,
+      "probabilities": {
+        "none_local": 0.95,
+        "context": 0.05,
+        "zustand": 0.0
+      }
+    },
+    "testing": {
+      "type": "choice",
+      "choice": "unit_plus_smoke",
+      "confidence": 0.74,
+      "probabilities": {
+        "unit_plus_smoke": 0.83,
+        "minimal_smoke": 0.05,
+        "no_tests": 0.12
+      }
+    },
+    "folder_layout": {
+      "type": "choice",
+      "choice": "feature_first",
+      "confidence": 1.0,
+      "probabilities": {
+        "feature_first": 1.0,
+        "layer_first": 0.0,
+        "atomic_design": 0.0
+      }
+    },
+    "ios_scope": {
+      "type": "noul",
+      "noul": 0.94
+    }
+  }
+}

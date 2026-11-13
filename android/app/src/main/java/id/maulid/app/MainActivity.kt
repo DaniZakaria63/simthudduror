@@ -1,4 +1,4 @@
-package com.daniza.simtudduror
+package id.maulid.app
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

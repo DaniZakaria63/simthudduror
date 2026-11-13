@@ -1,0 +1,76 @@
+{
+  "model": "jev-latest",
+  "state": {
+    "project": "Simtudduror 2021 Terbaru - React Native migration",
+    "legacy": "Android Java app with Home (hero image + 3-column grid of 6 rounded cards, each card has an icon letter and a name) and Read (full-screen PhotoView zoomable image). Content entries are placeholders: icons I,A,B,T,G,R and names SATU,DUA,TIGA,EMPAT,LIMA,ENAM; each entry opens one of 3 photos.",
+    "decisions_already_made": {
+      "language": "TypeScript (Jev 0.98)",
+      "navigation": "React Navigation native stack (Jev 0.95)",
+      "reader_zoom": "custom ZoomableImage using only core Animated + PanResponder (Jev 0.87)",
+      "styling": "theme tokens + StyleSheet (Jev 0.99)"
+    },
+    "environment": {"node": "26.5.0", "java": "21", "android": "emulator Pixel 9 Pro API 37 booted", "os": "Linux", "io_s_build": "not possible on Linux, ios folder still part of the deliverable"},
+    "goal": "modular feature-based React Native codebase with android and ios, runs on emulator, faithful to the legacy UI, ready for content to be added later",
+    "team": "boss-worker agents with disjoint file scopes"
+  },
+  "questions": {
+    "content_model": {
+      "type": "choice",
+      "instructions": "How should the catalog and reader content be modeled now, given the legacy app is image-page based and content is not written yet?",
+      "criteria": {
+        "image_pages": "Keep image-page reader: catalog entries map to reader images exactly like the legacy app, typed catalog module is the single source of truth",
+        "text_pages": "Replace images with text syair pages and typography, dropping the image viewer",
+        "hybrid": "Catalog entries carry both an image page and optional text, reader shows whichever is present"
+      }
+    },
+    "catalog_labels": {
+      "type": "choice",
+      "instructions": "What labels should the six catalog entries use in the migrated app?",
+      "criteria": {
+        "keep_legacy": "Keep legacy placeholders (icons I,A,B,T,G,R and names SATU..ENAM) for exact behavioral fidelity, easy to replace later",
+        "meaningful_titles": "Invent meaningful maulid/syair section names while keeping the layout",
+        "hybrid_labels": "Keep the icon letters but give descriptive section names"
+      }
+    },
+    "grid_impl": {
+      "type": "choice",
+      "instructions": "How should the 3-column catalog grid be implemented in React Native?",
+      "criteria": {
+        "flatlist_num_columns": "FlatList with numColumns=3, ListHeaderComponent for the hero, and columnWrapperStyle",
+        "flexwrap_scrollview": "ScrollView with flexWrap row of fixed-width items",
+        "sectionlist": "SectionList"
+      }
+    },
+    "state_management": {
+      "type": "choice",
+      "instructions": "What state management, if any, should the app use for this two-screen catalog app?",
+      "criteria": {
+        "none_local": "No global state library: catalog is static data, reader gets its item via route params, local component state only",
+        "context": "React Context provider for catalog/theme",
+        "zustand": "Zustand store"
+      }
+    },
+    "testing": {
+      "type": "choice",
+      "instructions": "What test depth is appropriate for this migration deliverable?",
+      "criteria": {
+        "unit_plus_smoke": "Jest + React Native Testing Library: catalog integrity, card rendering and navigation smoke test, no native build tests",
+        "minimal_smoke": "One Jest smoke test that App renders",
+        "no_tests": "No tests, rely on emulator verification only"
+      }
+    },
+    "folder_layout": {
+      "type": "choice",
+      "instructions": "Which folder organization best expresses the requested modular feature-based architecture for React Native, with shared theme/ui, and why?",
+      "criteria": {
+        "feature_first": "src/app (root), src/navigation, src/features/home and src/features/reader each with screens/components/data, src/shared/{theme,ui,assets,types}",
+        "layer_first": "src/screens, src/components, src/hooks, src/services, src/theme",
+        "atomic_design": "src/atoms, src/molecules, src/organisms, src/screens"
+      }
+    },
+    "ios_scope": {
+      "type": "noul",
+      "instructions": "Given iOS cannot be built on this Linux machine, the ios folder should still be created and configured for the migration deliverable."
+    }
+  }
+}
