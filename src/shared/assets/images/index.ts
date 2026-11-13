@@ -22,5 +22,3 @@ export const syairImages: Record<SyairImageKey, ImageSourcePropType> = {
 export function getSyairImage(key: SyairImageKey): ImageSourcePropType {
   return syairImages[key];
 }
-
-export default syairImages;

@@ -93,10 +93,6 @@ export const typography = {
     fontWeight: '600' as const,
     color: colors.white,
   },
-  body: {
-    fontSize: 15,
-    color: colors.black,
-  },
 } as const;
 
 /** Structurally significant dimensions mirrored from the legacy layouts. */
@@ -112,10 +108,7 @@ export const layout = {
   sheetHorizontalMargin: 5,
   /** `rvList` top padding, keeping the first card row clear of the sheet edge. */
   sheetTopPadding: 40,
-  /** Minimum scrollable content height for the catalog sheet (530dp). */
-  sheetMinHeight: 530,
-  /** Hero and card metadata. */
-  heroPaddingTop: 0,
+  /** Card padding from `list_item_read.xml`. */
   cardPaddingVertical: 10,
   cardPaddingHorizontal: 6,
 } as const;
@@ -132,6 +125,3 @@ export const motion = {
     useNativeDriver: true,
   },
 } as const;
-
-export type AppColors = typeof colors;
-export type Spacing = typeof spacing;

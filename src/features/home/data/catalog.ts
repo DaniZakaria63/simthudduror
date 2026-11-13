@@ -25,15 +25,5 @@ export const catalog: SyairEntry[] = [
   { id: 'enam', initial: 'R', title: 'ENAM', imageKey: 'sholawat' },
 ];
 
-/**
- * Look an entry up by its stable id.
- *
- * The reader navigates with an `entryId`, so a reverse lookup keeps the screen
- * resilient to callers that only know the identity.
- */
-export function findSyairById(id: string): SyairEntry | undefined {
-  return catalog.find(entry => entry.id === id);
-}
-
 /** Column count of the catalog grid (legacy `GridLayoutManager(..., 3)`). */
 export const CATALOG_COLUMNS = layout.gridColumns;

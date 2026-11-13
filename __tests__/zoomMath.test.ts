@@ -107,6 +107,7 @@ describe('focalTranslation', () => {
 
     const next = focalTranslation(
       focal,
+      focal,
       VIEWPORT,
       currentTranslate,
       currentScale,
@@ -129,18 +130,101 @@ describe('focalTranslation', () => {
 
   it('leaves the translation alone when the current scale is invalid', () => {
     const current = { x: 12, y: -8 };
-    expect(focalTranslation({ x: 100, y: 100 }, VIEWPORT, current, 0, 2)).toEqual(
-      current,
-    );
     expect(
-      focalTranslation({ x: 100, y: 100 }, VIEWPORT, current, Number.NaN, 2),
+      focalTranslation(
+        { x: 100, y: 100 },
+        { x: 100, y: 100 },
+        VIEWPORT,
+        current,
+        0,
+        2,
+      ),
+    ).toEqual(current);
+    expect(
+      focalTranslation(
+        { x: 100, y: 100 },
+        { x: 100, y: 100 },
+        VIEWPORT,
+        current,
+        Number.NaN,
+        2,
+      ),
     ).toEqual(current);
   });
 
   it('produces no translation at the viewport centre', () => {
-    const next = focalTranslation(CENTRE, VIEWPORT, { x: 0, y: 0 }, 1, 2);
+    const next = focalTranslation(
+      CENTRE,
+      CENTRE,
+      VIEWPORT,
+      { x: 0, y: 0 },
+      1,
+      2,
+    );
     expect(next.x).toBeCloseTo(0, 10);
     expect(next.y).toBeCloseTo(0, 10);
+  });
+
+  // Regression: the first implementation omitted the focal *movement* term,
+  // which froze two-finger drags and inverted the image when zooming.
+  it('follows a moving focal point in a constant-distance two-finger drag', () => {
+    const startFocal = { x: 100, y: 100 };
+    const currentFocal = { x: 140, y: 160 };
+
+    const next = focalTranslation(
+      startFocal,
+      currentFocal,
+      VIEWPORT,
+      { x: 0, y: 0 },
+      1,
+      1,
+    );
+
+    // ratio 1 => the translation must simply follow the fingers.
+    expect(next).toEqual({ x: 40, y: 60 });
+  });
+
+  it('does not freeze when the fingers keep their distance', () => {
+    const next = focalTranslation(
+      { x: 100, y: 100 },
+      { x: 130, y: 80 },
+      VIEWPORT,
+      { x: 20, y: 30 },
+      2,
+      2,
+    );
+
+    // t' = t0 + (f_now - f_start)
+    expect(next).toEqual({ x: 50, y: 10 });
+  });
+
+  it('keeps the grabbed content under a moving focal point while scaling', () => {
+    const startFocal = { x: 100, y: 200 };
+    const currentFocal = { x: 160, y: 260 };
+    const startTranslate = { x: 5, y: -10 };
+    const startScale = 1.5;
+    const nextScale = 3;
+
+    const next = focalTranslation(
+      startFocal,
+      currentFocal,
+      VIEWPORT,
+      startTranslate,
+      startScale,
+      nextScale,
+    );
+
+    const contentBefore = {
+      x: (startFocal.x - CENTRE.x - startTranslate.x) / startScale,
+      y: (startFocal.y - CENTRE.y - startTranslate.y) / startScale,
+    };
+    const contentNow = {
+      x: (currentFocal.x - CENTRE.x - next.x) / nextScale,
+      y: (currentFocal.y - CENTRE.y - next.y) / nextScale,
+    };
+
+    expect(contentNow.x).toBeCloseTo(contentBefore.x, 10);
+    expect(contentNow.y).toBeCloseTo(contentBefore.y, 10);
   });
 });
 

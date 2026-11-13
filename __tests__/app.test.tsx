@@ -2,7 +2,12 @@
  * Navigation smoke test: the real app shell (SafeAreaProvider +
  * NavigationContainer + native stack) mounts and can push the reader route.
  */
-import { fireEvent, render, screen, waitFor } from '@testing-library/react-native';
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from '@testing-library/react-native';
 
 import App from '../src/app/App';
 

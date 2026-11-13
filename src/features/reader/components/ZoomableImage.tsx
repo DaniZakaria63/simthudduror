@@ -72,7 +72,8 @@ interface GestureState {
   originY: number;
   panStartX: number;
   panStartY: number;
-  /** Pinch baseline: finger distance, scale and translation at pinch start. */
+  /** Pinch baseline: focal point, finger distance, scale and translation. */
+  pinchStartFocal: Point;
   pinchStartDistance: number;
   pinchStartScale: number;
   pinchStartTranslation: Translation;
@@ -94,6 +95,7 @@ function createIdleGesture(): GestureState {
     originY: 0,
     panStartX: 0,
     panStartY: 0,
+    pinchStartFocal: { x: 0, y: 0 },
     pinchStartDistance: MIN_PINCH_DISTANCE,
     pinchStartScale: MIN_SCALE,
     pinchStartTranslation: ZERO,
@@ -129,7 +131,9 @@ export function ZoomableImage({
     const resolved = Image.resolveAssetSource(source);
     const width = resolved?.width ?? 0;
     const height = resolved?.height ?? 0;
-    return width > 0 && height > 0 ? { width, height } : { width: 0, height: 0 };
+    return width > 0 && height > 0
+      ? { width, height }
+      : { width: 0, height: 0 };
   }, [source]);
 
   // Size the image is drawn at in `contain` mode; also the basis of pan bounds.
@@ -147,9 +151,7 @@ export function ZoomableImage({
   const handleLayout = (event: LayoutChangeEvent) => {
     const { width, height } = event.nativeEvent.layout;
     setViewport(prev =>
-      prev.width === width && prev.height === height
-        ? prev
-        : { width, height },
+      prev.width === width && prev.height === height ? prev : { width, height },
     );
   };
 
@@ -179,6 +181,26 @@ export function ZoomableImage({
       translateY.setValue(clamped.y);
     }
   }, [viewport, fitted, translateX, translateY]);
+
+  // Keep the gesture mirrors aligned with the values actually on screen. A
+  // spring writes its target immediately, so without these listeners grabbing
+  // a settling image would rebase from the target instead of the visible frame.
+  useEffect(() => {
+    const scaleListener = scale.addListener(({ value }) => {
+      scaleRef.current = value;
+    });
+    const translateXListener = translateX.addListener(({ value }) => {
+      translationRef.current = { ...translationRef.current, x: value };
+    });
+    const translateYListener = translateY.addListener(({ value }) => {
+      translationRef.current = { ...translationRef.current, y: value };
+    });
+    return () => {
+      scale.removeListener(scaleListener);
+      translateX.removeListener(translateXListener);
+      translateY.removeListener(translateYListener);
+    };
+  }, [scale, translateX, translateY]);
 
   // A new image starts neutral, mirroring a fresh PhotoView attach.
   useEffect(() => {
@@ -212,14 +234,22 @@ export function ZoomableImage({
     translateY.setValue(nextTranslation.y);
   };
 
-  /** Animate to a transform on the native driver; mirrors update immediately. */
+  /**
+   * Animate to a transform on the native driver. The mirrors are updated by the
+   * value listeners above as the spring interpolates, so a gesture that starts
+   * mid-spring rebases from the frame the user actually sees.
+   */
   const springTo = (nextScale: number, nextTranslation: Translation) => {
-    scaleRef.current = nextScale;
-    translationRef.current = nextTranslation;
     Animated.parallel([
       Animated.spring(scale, { ...motion.spring, toValue: nextScale }),
-      Animated.spring(translateX, { ...motion.spring, toValue: nextTranslation.x }),
-      Animated.spring(translateY, { ...motion.spring, toValue: nextTranslation.y }),
+      Animated.spring(translateX, {
+        ...motion.spring,
+        toValue: nextTranslation.x,
+      }),
+      Animated.spring(translateY, {
+        ...motion.spring,
+        toValue: nextTranslation.y,
+      }),
     ]).start();
   };
 
@@ -241,6 +271,8 @@ export function ZoomableImage({
     const gesture = gestureRef.current;
     gesture.mode = 'pinch';
     gesture.hadMultiTouch = true;
+    const startFocal = midpoint(toPoint(touches[0]), toPoint(touches[1]));
+    gesture.pinchStartFocal = startFocal;
     gesture.pinchStartDistance = Math.max(
       distanceBetween(toPoint(touches[0]), toPoint(touches[1])),
       MIN_PINCH_DISTANCE,
@@ -298,7 +330,11 @@ export function ZoomableImage({
     // fitted image so letterboxed images stay inside their own bounds.
     springTo(
       target.scale,
-      clampTranslation(target.translateX, target.translateY, boundsFor(target.scale)),
+      clampTranslation(
+        target.translateX,
+        target.translateY,
+        boundsFor(target.scale),
+      ),
     );
   };
 
@@ -356,6 +392,7 @@ export function ZoomableImage({
             MAX_SCALE,
           );
           const focal = focalTranslation(
+            gesture.pinchStartFocal,
             midpoint(toPoint(touches[0]), toPoint(touches[1])),
             viewportRef.current,
             gesture.pinchStartTranslation,
@@ -388,6 +425,19 @@ export function ZoomableImage({
         }
         // touches.length === 0: the release handler settles the transform.
       },
+      // A finger lifting mid-gesture (3->2, 2->1) must re-baseline, otherwise
+      // the remaining fingers inherit a distance/scale pair from another pair.
+      onPanResponderEnd: event => {
+        const touches = event.nativeEvent.touches;
+        if (!isMeasured()) {
+          return;
+        }
+        if (touches.length >= 2) {
+          beginPinch(touches);
+        } else if (touches.length === 1) {
+          beginPan(toPoint(touches[0]));
+        }
+      },
       onPanResponderRelease: (_event, gestureState) => {
         finishGesture(gestureState);
       },
@@ -403,16 +453,19 @@ export function ZoomableImage({
       onLayout={handleLayout}
       style={styles.container}
       testID={testID}
-      {...panResponderRef.current.panHandlers}>
+      {...panResponderRef.current.panHandlers}
+    >
       <Animated.View
         pointerEvents="none"
         style={[
           StyleSheet.absoluteFill,
           { transform: [{ translateX }, { translateY }] },
-        ]}>
+        ]}
+      >
         <Animated.View
           pointerEvents="none"
-          style={[StyleSheet.absoluteFill, { transform: [{ scale }] }]}>
+          style={[StyleSheet.absoluteFill, { transform: [{ scale }] }]}
+        >
           <Image
             accessibilityLabel={accessibilityLabel}
             accessibilityRole="image"
@@ -442,5 +495,3 @@ const styles = StyleSheet.create({
     height: '100%',
   },
 });
-
-export default ZoomableImage;

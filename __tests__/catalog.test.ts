@@ -5,11 +5,7 @@
  * `list_name`, `HomeFragment.mImages`), so the test fails if a migration edit
  * drifts from the original ordering or pairing.
  */
-import {
-  CATALOG_COLUMNS,
-  catalog,
-  findSyairById,
-} from '../src/features/home/data/catalog';
+import { CATALOG_COLUMNS, catalog } from '../src/features/home/data/catalog';
 
 describe('catalog', () => {
   it('exposes the six legacy entries in order', () => {
@@ -58,11 +54,5 @@ describe('catalog', () => {
 
   it('lays the catalog out in three grid columns', () => {
     expect(CATALOG_COLUMNS).toBe(3);
-  });
-
-  it('finds an entry by id and returns undefined for unknown ids', () => {
-    expect(findSyairById('satu')).toBe(catalog[0]);
-    expect(findSyairById('enam')).toBe(catalog[5]);
-    expect(findSyairById('missing')).toBeUndefined();
   });
 });
