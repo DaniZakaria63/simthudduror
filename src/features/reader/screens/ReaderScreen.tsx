@@ -17,7 +17,10 @@ import { syairImages } from '../../../shared/assets/images';
 import { colors, radii, spacing, typography } from '../../../shared/theme';
 import { ZoomableImage } from '../components/ZoomableImage';
 
-export function ReaderScreen({ navigation, route }: RootStackScreenProps<'Reader'>) {
+export function ReaderScreen({
+  navigation,
+  route,
+}: RootStackScreenProps<'Reader'>) {
   const { title, imageKey } = route.params;
   const insets = useSafeAreaInsets();
   // The params cross a serialisation boundary, so treat the lookup as possibly
@@ -47,9 +50,10 @@ export function ReaderScreen({ navigation, route }: RootStackScreenProps<'Reader
       />
       <View
         pointerEvents="box-none"
-        style={[styles.topBar, { paddingTop: insets.top + spacing.sm }]}>
+        style={[styles.topBar, { paddingTop: insets.top + spacing.sm }]}
+      >
         <BackButton onPress={handleBack} />
-        <View style={styles.titleScrim}>
+        <View pointerEvents="none" style={styles.titleScrim}>
           <Text numberOfLines={1} style={styles.title}>
             {title}
           </Text>
@@ -68,7 +72,8 @@ function BackButton({ onPress }: { onPress: () => void }) {
       hitSlop={spacing.md}
       onPress={onPress}
       style={({ pressed }) => [styles.backButton, pressed && styles.pressed]}
-      testID="reader-back">
+      testID="reader-back"
+    >
       <Text style={styles.backGlyph}>←</Text>
     </Pressable>
   );
@@ -128,5 +133,3 @@ const styles = StyleSheet.create({
     ...typography.readerTitle,
   },
 });
-
-export default ReaderScreen;

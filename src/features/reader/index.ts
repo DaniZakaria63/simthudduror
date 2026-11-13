@@ -1,1 +1,1 @@
-export { ReaderScreen, default } from './screens/ReaderScreen';
+export { ReaderScreen } from './screens/ReaderScreen';

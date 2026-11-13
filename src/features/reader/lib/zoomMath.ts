@@ -72,8 +72,7 @@ export function fitContain(
   viewportW: number,
   viewportH: number,
 ): Size {
-  const valid =
-    sourceW > 0 && sourceH > 0 && viewportW > 0 && viewportH > 0;
+  const valid = sourceW > 0 && sourceH > 0 && viewportW > 0 && viewportH > 0;
   if (!valid) {
     return { width: 0, height: 0 };
   }
@@ -116,37 +115,54 @@ export function clampTranslation(
 }
 
 /**
- * Rebase the translation so the content point under the fingers stays put
- * while the zoom changes.
+ * Rebase the translation so the content point grabbed at pinch start stays
+ * under the moving focal point while the scale changes.
  *
  * With content scaled about the viewport centre `C`, a screen point `f` shows
- * the content point `q = (f - C - t) / s`. Requiring the same `q` at `s'`
- * gives `t' = (f - C) * (1 - s'/s) + (s'/s) * t`.
+ * the content point `q = (f - C - t) / s`. Requiring the content point under
+ * the fingers to stay fixed between the gesture baseline `(f0, s0, t0)` and the
+ * current frame `(f, s')` gives:
  *
- * @param focal    current pinch focal point (viewport coordinates)
- * @param currentTranslate translation before this frame
- * @param currentScale     scale before this frame
- * @param nextScale        scale requested by the pinch
+ *   (f - C - t') / s' = (f0 - C - t0) / s0
+ *   t' = (f - C) - (s'/s0) * (f0 - C - t0)
+ *
+ * The `f` term (rather than `f0`) is what lets a two-finger drag pan the image:
+ * with a constant distance the scale ratio is 1 and `t'` simply follows the
+ * finger movement. Calling this with `f === f0` reduces to the stationary
+ * focal-point case used by double tap.
+ *
+ * @param startFocal  focal point when the pinch began (viewport coordinates)
+ * @param currentFocal current focal point of this move
+ * @param startTranslate translation at pinch start
+ * @param startScale   scale at pinch start
+ * @param nextScale    scale requested by the current move
  */
 export function focalTranslation(
-  focal: Point,
+  startFocal: Point,
+  currentFocal: Point,
   viewport: Size,
-  currentTranslate: Translation,
-  currentScale: number,
+  startTranslate: Translation,
+  startScale: number,
   nextScale: number,
 ): Translation {
-  if (!(currentScale > 0) || !Number.isFinite(currentScale)) {
-    return { x: currentTranslate.x, y: currentTranslate.y };
+  if (!(startScale > 0) || !Number.isFinite(startScale)) {
+    return { ...startTranslate };
   }
-  const ratio = nextScale / currentScale;
+  const ratio = nextScale / startScale;
   if (!Number.isFinite(ratio)) {
-    return { x: currentTranslate.x, y: currentTranslate.y };
+    return { ...startTranslate };
   }
   const centreX = viewport.width / 2;
   const centreY = viewport.height / 2;
   return {
-    x: (focal.x - centreX) * (1 - ratio) + ratio * currentTranslate.x,
-    y: (focal.y - centreY) * (1 - ratio) + ratio * currentTranslate.y,
+    x:
+      currentFocal.x -
+      centreX -
+      ratio * (startFocal.x - centreX - startTranslate.x),
+    y:
+      currentFocal.y -
+      centreY -
+      ratio * (startFocal.y - centreY - startTranslate.y),
   };
 }
 
@@ -172,7 +188,14 @@ export function doubleTapTarget(
     return { scale: min, translateX: 0, translateY: 0 };
   }
   const nextScale = Math.max(doubleTapZoom, min);
-  const focal = focalTranslation(tap, viewport, { x: 0, y: 0 }, min, nextScale);
+  const focal = focalTranslation(
+    tap,
+    tap,
+    viewport,
+    { x: 0, y: 0 },
+    min,
+    nextScale,
+  );
   const bounds = panBounds(
     viewport.width,
     viewport.height,

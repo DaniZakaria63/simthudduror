@@ -53,6 +53,12 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     alignItems: 'center',
+    /**
+     * `GridLayoutManager(3)` never stretches a partial last row. Capping each
+     * card at one third keeps the grid correct if content is not a multiple of
+     * three (the catalog is the content authoring surface).
+     */
+    maxWidth: '33.333%',
     justifyContent: 'center',
     backgroundColor: colors.cream,
     borderRadius: radii.card,
@@ -79,5 +85,3 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
-export default CatalogCard;
