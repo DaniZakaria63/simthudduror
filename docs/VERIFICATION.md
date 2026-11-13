@@ -133,3 +133,14 @@ export JAVA_HOME=/usr/lib/jvm/jdk-21.0.12.1-oracle-x64 ANDROID_HOME="$HOME/Andro
 npm start                         # Metro (separate terminal)
 npm run android                   # build + install + launch on the emulator
 ```
+
+### Remaining follow-ups (not blocking the migration)
+
+- Add a UI-level gesture test that drives `PanResponder` handlers and asserts the rendered transform
+  (the current regression coverage is at the pure-math layer).
+- Build and run the iOS host on macOS; supply a 1024px iOS app icon and replace the template launch
+  screen caption.
+- Author the real syair content in `src/features/home/data/catalog.ts` (the codes/labels are still the
+  legacy placeholders).
+- Replace the debug signing config for release distribution and add CI (typecheck + lint + Jest; a
+  device E2E job would also cover pinch).
