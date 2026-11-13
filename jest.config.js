@@ -11,5 +11,9 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!((jest-)?react-native|@react-native(-community)?|@react-navigation|react-native-screens|react-native-safe-area-context|use-latest-callback)/)',
   ],
-  testPathIgnorePatterns: ['/node_modules/', '<rootDir>/android/', '<rootDir>/ios/'],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '<rootDir>/android/',
+    '<rootDir>/ios/',
+  ],
 };

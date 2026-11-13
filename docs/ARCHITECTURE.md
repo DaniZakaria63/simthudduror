@@ -119,7 +119,9 @@ Pinch and pan both start from the current *committed* values (`useRef` mirrors o
   and the measured viewport, matching `resizeMode="contain"`.
 - `panBounds()` — half the overflow at the current scale, never negative; the image cannot be dragged
   away from its own bounds.
-- `focalTranslation()` — keeps the content point under the two fingers fixed while scaling.
+- `focalTranslation()` — moves the translation with the focal point and the scale ratio:
+  `t' = (f - C) - (s'/s0)·(f0 - C - t0)`, so the content grabbed at pinch start stays under the
+  moving fingers (this is also what makes a constant-distance two-finger drag pan instead of freeze).
 - `doubleTapTarget()` — zoom in at the tap point, clamped, or toggle back to 1× / zero translation.
 
 Gestures: one-finger pan only while zoomed; two-finger pinch clamped to 1×–5×; double-tap toggle with
@@ -206,13 +208,15 @@ Verification evidence (screenshots, logs) lives in [VERIFICATION.md](VERIFICATIO
 
 ## 12. Intentional visual differences from the legacy build
 
-The migration is behavior-faithful, but three details were corrected because the legacy implementation
-did not render as its author intended. Each is a visible, deliberate choice:
+The migration is behavior-faithful, but the details below are deliberate departures from the legacy
+build (some correct behaviour the legacy implementation did not deliver as written; others are
+documented product choices). Each is visible:
 
 1. **Sheet fills the viewport.** The legacy `RecyclerView` had `minHeight=530dp` and the
    `NestedScrollView` child was measured as wrap-content, so on tall screens the white sheet stopped
    above the bottom and left a navy band. The React Native sheet grows to the bottom (`flexGrow`
-   footer) while keeping the legacy 530dp minimum in documented form (`layout.sheetMinHeight`).
+   footer). The legacy 530dp `minHeight` is not carried over because the sheet already fills the
+   viewport; keeping it would force a scroll that the original layout did not have either.
 2. **Hero image is letterboxed, not stretched.** The legacy `ImageView` had no `src`; the photo was an
    Android `background` drawable, which stretches to the view bounds. The author's intent was clearly
    `centerInside` (it is written in the XML), so the RN hero uses `resizeMode="contain"` and avoids the
@@ -220,3 +224,14 @@ did not render as its author intended. Each is a visible, deliberate choice:
 3. **Reader chrome.** The reader adds a translucent title/back bar for an explicit back affordance.
    Legacy relied only on the system back button; Android hardware back still works because the reader
    is a normal native-stack screen.
+4. **Monogram size and card padding.** `typography.monogram` is 22dp/700 instead of the legacy
+   `TextView` default (~14sp); the card also has 6dp horizontal padding and a pressed
+   opacity/scale animation. The legacy XML left these to theme defaults and had no press feedback.
+   This keeps the intended monogram-above-title rhythm visible at the migrated card size.
+5. **Zoom limits.** The reader allows 1×–5× with a 2.5× double-tap step; `PhotoView`'s defaults are
+   1×–3×/2×. The wider range is intentional for page scans.
+6. **iOS icon.** `ios/Simtudduror/Images.xcassets/AppIcon.appiconset` has no artwork yet (Android icons
+   are byte-identical to the legacy ones); a 1024px iOS icon must be supplied before an App Store
+   build. The launch screen still carries the React Native template caption.
+7. **Release signing.** `release` uses the template's debug keystore, so the branch produces an
+   installable APK but not an upload-ready one; a real keystore is a release-ops follow-up.

@@ -97,6 +97,7 @@ npm run ios
 | `npm test` / `npm run test:ci` | Run Jest (CI mode in the latter). |
 | `npm run lint` | ESLint (`@react-native` config). |
 | `npm run typecheck` | `tsc --noEmit`. |
+| `npm run format` / `npm run format:check` | Prettier write / verify (`src`, `__tests__`, JS/JSON configs). |
 
 ## Authoring content
 
