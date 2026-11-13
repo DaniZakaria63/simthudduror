@@ -275,7 +275,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.daniza.simtudduror";
+				PRODUCT_BUNDLE_IDENTIFIER = "id.maulid.app";
 				PRODUCT_NAME = Simtudduror;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -304,7 +304,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.daniza.simtudduror";
+				PRODUCT_BUNDLE_IDENTIFIER = "id.maulid.app";
 				PRODUCT_NAME = Simtudduror;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SWIFT_VERSION = 5.0;

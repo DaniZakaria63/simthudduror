@@ -1,97 +1,135 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Simtudduror 2021 Terbaru — React Native
 
-# Getting Started
+A feature-based React Native rewrite of the legacy native Android app. The React Native app ships as
+`id.maulid.app` on both Android and iOS (the untouched legacy app keeps its original id on `dev-legacy`).
+The app is a two-screen syair/maulid reader: a catalog of six sections on a navy mosque
+hero screen, and a full-screen zoomable reader for each section page.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+> **Migration status.** Branch `feat/migration` replaces the old Android/Java/Gradle project with a
+> React Native 0.88.1 (TypeScript) codebase. The original app is preserved untouched on the
+> `dev-legacy` branch — see [Branch model](#branch-model).
 
-## Step 1: Start Metro
+## Screens
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+| Home (`src/features/home`) | Reader (`src/features/reader`) |
+| --- | --- |
+| Navy `#1A2C55` screen, 250 dp mosque hero, white sheet with 25 dp top corners overlapping the hero by 50 dp, 3-column grid of cream `#FFFAF0` cards with a monogram and italic title. | Black full-screen page with pinch-zoom, pan and double-tap zoom (1×–5×), translucent top bar with the section title and a back control. |
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Tech stack
 
-```sh
-# Using npm
-npm start
+- **React Native 0.88.1** with the New Architecture and Hermes, created with the React Native CLI.
+- **TypeScript** (strict) — typed catalog domain, typed navigation params, no `any` shortcuts.
+- **React Navigation 7** native stack (`@react-navigation/native`, `native-stack`, `react-native-screens`, `react-native-safe-area-context`).
+- **Zero extra native dependencies** beyond navigation: the zoomable reader is implemented with React Native core `Animated` + `PanResponder`.
+- **Jest + React Native Testing Library** for domain, component and navigation tests.
+- Android host project + iOS host project (iOS is configured but cannot be built on Linux).
 
-# OR using Yarn
-yarn start
+Architecture, module boundaries and the legacy-to-RN mapping are documented in
+[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). AI-assisted design decisions are recorded in
+[docs/DECISIONS.md](docs/DECISIONS.md).
+
+## Branch model
+
+| Branch | Purpose | Head at migration start |
+| --- | --- | --- |
+| `master` | Stable upstream line. | `2df0dc4` |
+| `development` | Active development line, recreated from `master` for the rewrite. | `2df0dc4` |
+| `feat/migration` | This rewrite: React Native app. | created from `development` |
+| `dev-legacy` | The original Android/Java app, preserved exactly as it was (renamed from the old `development` branch). | `b165519` |
+
+The legacy sources are still readable from the repository:
+
+```bash
+git show dev-legacy:app/src/main/java/com/daniza/simtudduror/HomeFragment.java
+git worktree add ../simtudduror-legacy dev-legacy   # optional read-only checkout
 ```
 
-## Step 2: Build and run your app
+## Project structure
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```
+.
+├── App.tsx                     # entry re-export of src/app/App
+├── index.js                    # AppRegistry bootstrap (component name: Simtudduror)
+├── src/
+│   ├── app/                    # providers + navigation container (app shell)
+│   ├── navigation/             # native stack + RootStackParamList contract
+│   ├── features/
+│   │   ├── home/               # catalog data, card component, home screen
+│   │   └── reader/             # zoom math, zoomable image, reader screen
+│   └── shared/
+│       ├── assets/images/      # migrated legacy photos + asset registry
+│       ├── theme/              # design tokens ported from colors.xml/drawables
+│       └── types/              # cross-feature domain types
+├── __tests__/                  # Jest + RTL suites
+├── android/                    # Android host (applicationId id.maulid.app)
+├── ios/                        # iOS host (bundle id id.maulid.app)
+└── docs/                       # architecture + decision records + QA evidence
 ```
 
-### iOS
+Feature rule: a feature may import `src/shared` and `src/navigation/types`, but features never
+import each other. The reader receives everything it needs through route params.
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+## Getting started
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+Prerequisites: Node.js ≥ 22.11, JDK 17–21, Android SDK (platform 37, build-tools 37, NDK 27.1)
+or Xcode + CocoaPods on macOS.
 
-```sh
-bundle install
-```
+```bash
+npm install
 
-Then, and every time you update your native dependencies, run:
+# Android (emulator or device)
+npm start                 # Metro
+npm run android           # build + install + launch
 
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
+# iOS (macOS only)
+cd ios && bundle install && bundle exec pod install && cd ..
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+### Scripts
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+| Script | Purpose |
+| --- | --- |
+| `npm start` | Start the Metro bundler. |
+| `npm run android` | Build and launch the Android app (requires a running emulator/device). |
+| `npm run ios` | Build and launch the iOS app (macOS only). |
+| `npm run android:build` | Build the Android debug APK without installing. |
+| `npm test` / `npm run test:ci` | Run Jest (CI mode in the latter). |
+| `npm run lint` | ESLint (`@react-native` config). |
+| `npm run typecheck` | `tsc --noEmit`. |
 
-## Step 3: Modify your app
+## Authoring content
 
-Now that you have successfully run the app, let's make changes!
+The six catalog entries keep the legacy placeholder labels so behavior is identical to the old app.
+When real syair content is ready, edit one file — `src/features/home/data/catalog.ts`:
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+```ts
+export const catalog: SyairEntry[] = [
+  {id: 'satu', initial: 'I', title: 'SATU', imageKey: 'masjid_sophia'},
+  // ...
+];
+```
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+- `title` / `initial` are rendered by `CatalogCard`.
+- `imageKey` points into the image registry in `src/shared/assets/images`; add a new photo there and
+  extend `SyairImageKey` in `src/shared/types/catalog.ts` to use it.
+- The reader is image-page based, matching the legacy PhotoView screen. Text-page rendering can be
+  added later as a new feature module without touching navigation or home.
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+## Migration fidelity
 
-## Congratulations! :tada:
+| Legacy Android | React Native |
+| --- | --- |
+| `MainActivity` + `FragmentManager` back stack | React Navigation native stack (`src/navigation/AppNavigator.tsx`) |
+| `HomeFragment` + `ListAdapter` + `RecyclerView` grid | `HomeScreen` + `CatalogCard` + `FlatList numColumns={3}` |
+| `ReadFragment` + `PhotoView` | `ReaderScreen` + custom `ZoomableImage` (`Animated` + `PanResponder`) |
+| `colors.xml` / drawables | `src/shared/theme/tokens.ts` |
+| `drawable/*.jpg` | `src/shared/assets/images/*` via a typed registry |
+| `strings.xml` arrays | typed `catalog` data |
+| `getArguments().getInt("IMAGE")` + Bundle | serialisable `{entryId, title, imageKey}` route params |
 
-You've successfully run and modified your React Native App. :partying_face:
+## iOS
 
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+`ios/` is a complete React Native host project (bundle id `id.maulid.app`, display name
+`Simtudduror 2021 Terbaru`). Building it requires macOS with Xcode and CocoaPods; the migration was
+verified on Android because the development machine is Linux.
