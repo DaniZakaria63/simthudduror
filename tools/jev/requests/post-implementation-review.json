@@ -1,0 +1,56 @@
+{
+  "model": "jev-latest",
+  "state": {
+    "task": "Migrate the Simtudduror 2021 Terbaru Android Java app (two screens: home catalog grid and full-screen PhotoView reader) to a modular feature-based React Native 0.88.1 TypeScript app, package id.maulid.app, Android and iOS hosts, running on a Pixel 9 Pro API 37 emulator.",
+    "implemented": {
+      "structure": "src/app (providers), src/navigation (native stack, typed params), src/features/home (catalog data, cards, screen), src/features/reader (screen, custom ZoomableImage, pure zoomMath), src/shared/{theme,types,assets}",
+      "navigation": "React Navigation native stack with serialisable params {entryId,title,imageKey}",
+      "reader": "Custom pinch/pan/double-tap image built only on core Animated + PanResponder (no gesture-handler/reanimated) because the native-dependency risk was judged high",
+      "tests": "Jest + React Native Testing Library: catalog integrity, zoom math, home navigation, reader valid/invalid states, app navigation smoke",
+      "verified_on_emulator": "home screen renders faithfully; card opens reader; double-tap zoom 2.5x centred on tap; pan clamps at bounds; back returns home; no JS errors",
+      "not_verified": "multi-finger pinch could not be injected on this emulator (production build, SELinux blocks /dev/input, adb input has no multipointer); iOS cannot be built on Linux; catalog labels are still the legacy placeholders SATU..ENAM because real content is not authored yet",
+      "quality_gates": "tsc --noEmit, eslint, jest, gradle assembleDebug, release JS bundle all pass"
+    },
+    "constraints": "single working session; boss-worker agents; must preserve legacy branch untouched; must keep dependencies small; emulator must run the app",
+    "context": "The app is a small reading app; the legacy code is ~6 small Java classes; content authoring is explicitly deferred by the product owner"
+  },
+  "questions": {
+    "highest_residual_risk": {
+      "type": "choice",
+      "instructions": "Which single residual risk most deserves attention before this migration is handed over?",
+      "criteria": {
+        "pinch_not_e2e_tested": "The custom pinch gesture is unit-tested and reviewed but was not exercised with real two-finger input on a device",
+        "ios_unverified": "The iOS host is configured but has never been compiled or run",
+        "content_placeholders": "The catalog still shows the legacy placeholder labels instead of real syair content",
+        "native_build_reproducibility": "The Android build depends on a specific JDK/SDK/NDK combination and could break elsewhere",
+        "accessibility_gaps": "Accessibility coverage is limited to labels and roles, without a screen-reader pass",
+        "performance_js_thread": "Gestures run on the JS thread and could stutter on heavier images"
+      }
+    },
+    "release_ready": {
+      "type": "noul",
+      "instructions": "The migration as described satisfies the product request: a modular feature-based React Native app with Android and iOS code, running on the emulator, with the legacy app preserved on dev-legacy."
+    },
+    "next_step": {
+      "type": "choice",
+      "instructions": "Which next step adds the most value after this migration?",
+      "criteria": {
+        "android_e2e_tests": "Add device-level gesture/E2E tests (e.g. UiAutomator/Maestro) including pinch",
+        "ios_ci": "Set up a macOS CI job to build and run the iOS host",
+        "content_authoring": "Replace placeholder catalog entries with real syair content",
+        "visual_regression": "Add screenshot-based visual regression tests for the two screens",
+        "type_safe_in_app": "Integrate a TypeSafe/Jev decision feature into the app itself"
+      }
+    },
+    "fidelity_score": {
+      "type": "score",
+      "instructions": "How much behavioral and visual risk does the custom Animated + PanResponder reader carry versus the legacy PhotoView implementation, based on the described verification?",
+      "criteria": [
+        "Negligible: equivalent behavior, verified end to end",
+        "Low: math and gestures verified except live multi-touch",
+        "Moderate: some gestures untested on device and could regress",
+        "High: custom gestures likely to misbehave compared with PhotoView"
+      ]
+    }
+  }
+}

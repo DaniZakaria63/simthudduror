@@ -197,3 +197,23 @@ install/launch `id.maulid.app` and old builds can live side by side.
 | Global state (Zustand/Context) | No shared mutable state exists; route params + static data suffice. |
 | Keep legacy Java and wrap it | Requirement is a total reinitialization; wrapping preserves the old structure instead of replacing it. |
 | Rename placeholder catalog labels | Product change outside migration scope; content is explicitly the next step. |
+
+---
+
+## Post-implementation review (Jev)
+
+After implementation, the same model was asked where the residual risk sits (request:
+[`tools/jev/requests/post-implementation-review.json`](../tools/jev/requests/post-implementation-review.json),
+response: [`docs/evidence/jev-post-implementation.json`](evidence/jev-post-implementation.json)):
+
+| Question | Answer |
+| --- | --- |
+| Highest residual risk | `pinch_not_e2e_tested` (0.49) narrowly over `ios_unverified` (0.41); confidence 0.39 — a close call, recorded as such |
+| Reader fidelity vs PhotoView | Score 1.13 / 3 with 88% of probability on "Low: math and gestures verified except live multi-touch" |
+| Release-ready judgment | 0.48 — not a confident yes, consistent with the deferred content and unbuilt iOS host |
+| Most valuable next step | `content_authoring` (0.58) over device-level E2E gesture tests (0.26) and iOS CI (0.13) |
+
+**How this was used.** The review pass focused on the pinch/pan/double-tap wiring and bounds maths, and
+[VERIFICATION.md](VERIFICATION.md) records exactly which gestures were exercised on the emulator and
+why pinch could not be. The next-step ranking is recorded here rather than acted on, because content is
+explicitly out of scope for the migration ("tinggal konten").

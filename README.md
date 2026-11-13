@@ -116,6 +116,20 @@ export const catalog: SyairEntry[] = [
 - The reader is image-page based, matching the legacy PhotoView screen. Text-page rendering can be
   added later as a new feature module without touching navigation or home.
 
+## Verification
+
+Full evidence: [docs/VERIFICATION.md](docs/VERIFICATION.md).
+
+| Home | Reader |
+| --- | --- |
+| ![Home screen](docs/screenshots/01-home.png) | ![Reader screen](docs/screenshots/02-reader.png) |
+
+Double-tap zoom (2.5×) and pan on the reader:
+
+| Double-tap zoom | Pan |
+| --- | --- |
+| ![Reader zoomed](docs/screenshots/03-reader-doubletap.png) | ![Reader panned](docs/screenshots/04-reader-pan.png) |
+
 ## Migration fidelity
 
 | Legacy Android | React Native |
