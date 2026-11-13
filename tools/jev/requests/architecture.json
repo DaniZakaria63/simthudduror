@@ -1,0 +1,56 @@
+{
+  "model": "jev-latest",
+  "state": {
+    "project": "Simtudduror 2021 Terbaru",
+    "legacy_platform": "Android native, Java, single module app, minSdk 16, targetSdk 30, ViewBinding, fragments",
+    "legacy_screens": ["Home: NestedScrollView with a hero image (masjid_sophia) and a 3-column RecyclerView grid of 6 items, each item a rounded card with an icon letter and a name", "Read: full-screen PhotoView (pinch-zoom image) showing one of 3 images (masjid_sophia, habibal, sholawat)"],
+    "legacy_navigation": "Fragment replace transaction with back stack, one MainActivity",
+    "legacy_content": "6 placeholder entries: icons I,A,B,T,G,R and names SATU,DUA,TIGA,EMPAT,LIMA,ENAM; each opens an image page; content is planned but not written yet",
+    "legacy_styling": "dark navy background #1A2C55, white rounded home card with 25dp top corners, cream #FFFAF0 item cards with 24dp radius and dashed grey border, condensed bold icon font and casual italic title font",
+    "migration_goal": "Totally reinitialize the project as a modular, feature-based React Native app with android and ios folders, TypeScript or JavaScript, runnable on a Pixel 9 Pro Android emulator, using react-native CLI. Features: home catalog grid + zoomable reader.",
+    "environment": {"node": "26.5.0", "java": "21", "android_sdk_installed": ["android-35", "android-37.1"], "emulator_avd": "Pixel_9_Pro", "ram_gb": 26, "cpu_cores": 16, "os": "Linux", "ios_build_possible": false},
+    "constraints": "One working session; boss-worker agent team; keep npm dependency set small but idiomatic; must produce a clean modular structure not a single App.tsx; testing should be feasible without heavy native test infrastructure; no app-store or backend requirements; offline-capable app",
+    "team_choice_context": "The lead agent must decide architecture before delegating implementation to worker agents with disjoint file scopes"
+  },
+  "questions": {
+    "language": {
+      "type": "choice",
+      "instructions": "Which language should the new React Native codebase use? Weigh maintainability, typing of the content model and navigation params, the React Native CLI default template, and the fact that the legacy app is small Java.",
+      "criteria": {
+        "typescript": "TypeScript for app code with typed content models and navigation params, React Native CLI default template",
+        "javascript": "Plain JavaScript/JSX, optionally with JSDoc types, closer to the user's wording of javascript code"
+      }
+    },
+    "navigation": {
+      "type": "choice",
+      "instructions": "How should the two screens (home catalog, reader) be navigated in React Native? Consider build reliability with autolinked native modules, architecture cleanliness, and the small screen count.",
+      "criteria": {
+        "react_navigation_native_stack": "Use @react-navigation/native + native-stack with react-native-screens and react-native-safe-area-context, industry standard and modular",
+        "custom_lightweight_navigator": "Hand-rolled navigator using React state, BackHandler and Animated transitions, zero extra native dependencies",
+        "expo_router": "Add Expo Router despite the project being created with the bare React Native CLI"
+      }
+    },
+    "reader_zoom": {
+      "type": "choice",
+      "instructions": "Which implementation should replace Android PhotoView for the zoomable reader screen? Consider gesture quality, native build risk, and code ownership.",
+      "criteria": {
+        "reanimated_gesture_handler": "react-native-gesture-handler + react-native-reanimated pinch/pan/double-tap implementation, best gestures but two more native deps and babel config",
+        "core_animated_panresponder": "Custom ZoomableImage built only on React Native core Animated and PanResponder, no extra native deps, full control",
+        "plain_image": "Plain Image with no zoom, dropping the legacy PhotoView behavior"
+      }
+    },
+    "styling": {
+      "type": "choice",
+      "instructions": "How should the design system be expressed in the new codebase, preserving the legacy navy/cream card look?",
+      "criteria": {
+        "theme_tokens_stylesheet": "Design tokens module plus StyleSheet.create in a shared theme/ui layer, zero runtime dependencies",
+        "nativewind": "NativeWind/Tailwind utility classes, requires babel and metro configuration",
+        "styled_components": "styled-components runtime CSS-in-JS"
+      }
+    },
+    "native_deps_risk": {
+      "type": "noul",
+      "instructions": "Adding react-native-screens, react-native-safe-area-context and a gesture/animation stack creates meaningful first-build risk in this one-session migration on a fresh emulator."
+    }
+  }
+}
