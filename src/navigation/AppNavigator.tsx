@@ -21,7 +21,8 @@ export function AppNavigator() {
         headerShown: false,
         contentStyle: { backgroundColor: colors.navy },
         animation: 'fade',
-      }}>
+      }}
+    >
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen
         name="Reader"
@@ -34,5 +35,3 @@ export function AppNavigator() {
     </Stack.Navigator>
   );
 }
-
-export default AppNavigator;

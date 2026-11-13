@@ -213,7 +213,11 @@ response: [`docs/evidence/jev-post-implementation.json`](evidence/jev-post-imple
 | Release-ready judgment | 0.48 — not a confident yes, consistent with the deferred content and unbuilt iOS host |
 | Most valuable next step | `content_authoring` (0.58) over device-level E2E gesture tests (0.26) and iOS CI (0.13) |
 
-**How this was used.** The review pass focused on the pinch/pan/double-tap wiring and bounds maths, and
+**How this was used.** The independent review focused on the pinch/pan/double-tap wiring and bounds
+maths and found a real blocker: the focal rebase omitted the focal-point movement term, which froze
+two-finger drags. The formula was corrected (`t' = (f - C) − (s'/s0)(f0 − C − t0)`) and covered by
+regression tests; the reader's mirrors and finger-count re-baselining were hardened in the same pass.
 [VERIFICATION.md](VERIFICATION.md) records exactly which gestures were exercised on the emulator and
-why pinch could not be. The next-step ranking is recorded here rather than acted on, because content is
-explicitly out of scope for the migration ("tinggal konten").
+why pinch could not be, now including the review findings and their fixes. The next-step ranking is
+recorded here rather than acted on, because content is explicitly out of scope for the migration
+("tinggal konten").

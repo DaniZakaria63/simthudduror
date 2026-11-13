@@ -8,6 +8,7 @@
  * stack, `react-native-screens`, `Animated`, `Image.resolveAssetSource`) is
  * handled by the React Native jest preset.
  */
-jest.mock('react-native-safe-area-context', () =>
-  require('react-native-safe-area-context/jest/mock').default,
+jest.mock(
+  'react-native-safe-area-context',
+  () => require('react-native-safe-area-context/jest/mock').default,
 );

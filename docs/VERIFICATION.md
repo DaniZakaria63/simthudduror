@@ -32,16 +32,16 @@ Evidence for the `feat/migration` rewrite. Commands are reproducible from
 | --- | --- |
 | `npx tsc --noEmit` | exit 0 |
 | `npx eslint .` | exit 0 |
-| `npx prettier --check` (feature files) | exit 0 |
+| `npm run format:check` | `All matched files use Prettier code style!` (exit 0) |
 
 ## 3. Automated tests
 
-Command: `npx jest --ci --silent` → **5 suites passed / 32 tests passed**, exit 0.
+Command: `npx jest --ci --silent` → **5 suites passed / 34 tests passed**, exit 0.
 
 | Suite | Tests | Covers |
 | --- | --- | --- |
-| `__tests__/catalog.test.ts` | 4 | six entries, legacy ids/initials/titles/image order, unique ids, `CATALOG_COLUMNS`, `findSyairById` |
-| `__tests__/zoomMath.test.ts` | 13 | clamp, touch distance/midpoint, contain fit (both orientations, zero sizes), pan bounds (1×/overflow/never negative/NaN), translation clamp, focal-point invariance, double-tap target (centre, clamp, reset) |
+| `__tests__/catalog.test.ts` | 4 | six entries, legacy ids/initials/titles/image order, unique ids, `CATALOG_COLUMNS` |
+| `__tests__/zoomMath.test.ts` | 22 | clamp, touch distance/midpoint, contain fit (both orientations, zero sizes), pan bounds (1×/overflow/never negative/NaN), translation clamp, focal-point invariance, moving-focal rebase (constant-distance two-finger drag, zoom-with-drift), double-tap target (centre, clamp, reset) |
 | `__tests__/homeScreen.test.tsx` | 2 | six cards/buttons render; pressing `catalog-card-satu` navigates with `{entryId,title,imageKey}` |
 | `__tests__/readerScreen.test.tsx` | 4 | valid params render image/title/back; invalid key renders "Terjadi Error"; back calls `goBack` |
 | `__tests__/app.test.tsx` | 2 | real `<App />` mounts the native stack, navigates home → reader → home |
@@ -67,6 +67,7 @@ QA device evidence:
 | APK | `android/app/build/outputs/apk/debug/app-debug.apk` (~48 MB) |
 | `aapt2 dump badging` | `package: name='id.maulid.app'`, label `Simtudduror 2021 Terbaru`, minSdk 24, targetSdk 36 |
 | Incremental rebuild after package change | `BUILD SUCCESSFUL in 10s` |
+| Release build | `./gradlew assembleRelease -PreactNativeArchitectures=x86_64` → `BUILD SUCCESSFUL in 1m 34s`, `app-release.apk` 24.6 MB (Hermes bundle + assets packaged) |
 | Release JS bundle | `react-native bundle --platform android --dev false` → 1.19 MB bundle, 22 copied assets, legacy photos embedded |
 
 ## 5. Emulator run
@@ -93,12 +94,32 @@ Screenshots in `docs/screenshots/`:
 | `03-reader-doubletap.png` | Reader after double tap: 2.5× zoom centred on the tap |
 | `04-reader-pan.png` | Reader after pan at 2.5×: translation clamped to the fitted image bounds |
 
+### Independent review fixes
+
+A senior read-only review was run against the branch after QA. It found one real defect in the
+highest-risk path and several smaller issues; all blockers/majors were fixed and re-verified:
+
+| Finding | Fix |
+| --- | --- |
+| **Blocker:** pinch rebase omitted the focal-point movement term (`t'` used only `f_now`, not `f_start`), so a constant-distance two-finger drag froze the image and zoom-with-drift moved it the wrong way | `zoomMath.focalTranslation` now takes the start *and* current focal and uses `t' = (f - C) − (s'/s0)(f0 − C − t0)`; three regression tests cover constant-distance drag, frozen-pan and zoom-with-drift (they fail against the old formula) |
+| **Major:** grabbing a settling spring rebased from the spring *target* | `ZoomableImage` now mirrors `Animated.Value` via value listeners, so gestures start from the visible frame; the misleading comment was removed |
+| **Major:** finger-count changes were re-baselined on start but not on end | `onPanResponderEnd` re-baselines pinch/pan when the remaining finger count changes |
+| Minor: title pill swallowed gestures over the top of the page | `titleScrim` is `pointerEvents="none"` (back button still receives touches) |
+| Minor: partial last grid row would stretch cards | `CatalogCard` caps at `maxWidth: 33.333%` |
+| Minor: dead lookup helper, unused tokens/dependency, dead default exports | removed (`findSyairById`, `sheetMinHeight`, `heroPaddingTop`, `typography.body`, `AppColors`, `Spacing`, `@react-native/new-app-screen`, unused defaults) |
+| Minor: `VERIFICATION.md` test counts/prettier claim were wrong | corrected; `npm run format:check` added and green |
+| Docs: undocumented visual deviations | `ARCHITECTURE.md` §12 now lists monogram/padding/press feedback, zoom limits, iOS icon gap, release signing |
+
+The dev server was restarted and the app re-run on the emulator after the fixes; the reader flows
+(home → reader → double-tap → pan → back) still pass with no JS errors.
+
 ### Untestable in this environment
 
-- **Pinch gesture end-to-end.** Multi-finger injection is unavailable: the emulator is a production
-  build (`adb root` refused), `/dev/input` is SELinux-blocked for the shell user, and `adb shell input`
-  has no multi-pointer API. Pinch shares the same `zoomMath`/`Animated` path as the verified pan and
-  double-tap; its math is covered by unit tests (focal-point invariance, bounds) and reviewed.
+- **Pinch gesture end-to-end.** Multi-finger injection is unavailable from this shell: the emulator
+  is a production build (`adb root` refused), `/dev/input` is SELinux-blocked for the shell user, and
+  `adb shell input` has no multi-pointer API. The two-finger path is covered by the corrected math and
+  its regression tests, and was exercised by the reviewer line by line; a human can confirm it on the
+  running emulator (two-finger pinch/pan on a reader page).
 - **iOS build.** Requires macOS/Xcode/CocoaPods. The iOS host is configured (bundle id
   `id.maulid.app`, display name, new architecture) but not compiled here.
 
