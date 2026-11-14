@@ -1,0 +1,40 @@
+{
+  "capturedAt": "2026-11-14T06:40:00Z",
+  "taskId": "task_4dcc5dea2b6b",
+  "runId": "run_3ed0be1875a1",
+  "dispatchId": "ctx_06c9feb81d95",
+  "sessionId": "ses_orcahf25c69259dbbec9a",
+  "workerDone": {
+    "outcome": "succeeded",
+    "reportedWorkerDone": true,
+    "filesEdited": [],
+    "cwd": "/home/dani/StudioProjects/simthudduror"
+  },
+  "modelProof": {
+    "verifyCommand": "orca-team verify-session --session ses_orcahf25c69259dbbec9a --json",
+    "ok": true,
+    "status": "high",
+    "expected": {
+      "providerID": "opencode-go",
+      "id": "deepseek-v4.1-flash",
+      "variant": "high"
+    },
+    "observedAssistantMessage": {
+      "providerID": "opencode-go",
+      "id": "deepseek-v4.1-flash",
+      "variant": "high"
+    }
+  },
+  "actualRecoveryCommand": "orca orchestration worker-start --task task_4dcc5dea2b6b --terminal term_187476a3-defa-4e5c-acba-24e3724f9a3d --worktree current --run run_3ed0be1875a1 --full --json",
+  "recoveryNote": "The task was already ready. The earlier --retry-of attempt failed with task_not_startable because --retry-of may only name the latest settled dispatch of a failed or blocked task. The successful recovery attached the existing ready terminal without --retry-of; no duplicate terminal and no fresh task were created.",
+  "retryOfAttempt": {
+    "receipt": "1794637933921-57694587f00c5a97-implementation",
+    "receiptPath": "/tmp/orca-high-smoke-retry.json",
+    "errorCode": "task_not_startable",
+    "message": "Task task_4dcc5dea2b6b cannot retry from Dispatch ctx_e3563cef0b68. Orchestration mutation request ID: d246c248-4701-4a57-98c6-d7c8d89ca4aa.",
+    "taskStatus": "ready",
+    "nextSteps": [
+      "--retry-of must name the latest settled Dispatch of a failed or blocked Task; check orca orchestration dispatch-show --task task_4dcc5dea2b6b --json and orca orchestration worker-show --dispatch ctx_e3563cef0b68 --json."
+    ]
+  }
+}

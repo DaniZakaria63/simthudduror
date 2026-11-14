@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "capturedAt": "2026-11-14T05:39:09.831Z",
+  "endpoint": "https://api.typesafe.ai/v1/systemone",
+  "apiKeySource": "file",
+  "request": {
+    "model": "jev-latest",
+    "stateSha256": "c9731949c079248cc50b4f4b22c90013c9b20a80cb40431208b354ec802b643c",
+    "stateExcerpt": "{\"project\":\"simthudduror\",\"task\":\"Add a small reusable Orca orchestration harness without changing app behavior.\",\"scope\":\"AGENTS.md, tools/orchestration, docs/orchestration, and a narrowly scoped Jev README link.\",\"evidence\":\"The implementation worker will provide commands, offline tests, a live Jev smoke result, and model/effort session evidence.\",\"constraints\":[\"Codex principal decides architecture, delegation, review, and acceptance.\",\"Only the implementation worker edits app code.\",\"Research never edits app code and reports evidence to Codex.\",\"Jev is advisory; confidence is not permission and its output is never executed as commands.\",\"Use native Orca mailbox supervision; no polling scheduler.\"],\"uncertainties\":[\"The Orca CLI does not expose OpenCode launch-time effort selection, so …",
+    "questions": {
+      "route": {
+        "type": "choice",
+        "instructions": "Which kind of next step should the Codex principal consider for this task? Choose exactly one.",
+        "criteria": {
+          "implementation": "A single implementation worker should make a scoped change in the app repository. Only that worker may edit app code.",
+          "research": "External documentation, web research, or CLI behavior must be gathered first. Research never edits app code.",
+          "review": "An existing implementation or plan needs independent review before acceptance. Review never edits app code.",
+          "codex_decision": "The principal must decide, clarify scope, or escalate; do not delegate yet."
+        }
+      },
+      "research_needed": {
+        "type": "noul",
+        "instructions": "Does this task require new external evidence, such as live documentation or observed CLI behavior, before the principal can safely decide?",
+        "criteria": {
+          "true": "New external evidence is required before a safe decision.",
+          "false": "The available repository evidence is enough for the next step."
+        }
+      },
+      "evidence_sufficient": {
+        "type": "noul",
+        "instructions": "Is the evidence in the supplied state sufficient and unambiguous for a safe next step without further clarification?",
+        "criteria": {
+          "true": "The evidence is sufficient and unambiguous for a safe next step.",
+          "false": "Evidence is missing, contradictory, or too ambiguous to proceed without principal review."
+        }
+      },
+      "review_risk": {
+        "type": "score",
+        "instructions": "How much review risk does the proposed next step carry, considering app behavior, secrets, shared configuration, and reversibility?",
+        "criteria": [
+          "Low: docs or tooling only, no app behavior change and no shared configuration.",
+          "Moderate: implementation may touch app behavior, tests, or project configuration.",
+          "High: security, secrets, data loss, global configuration, or an unclear rollback path."
+        ]
+      }
+    }
+  },
+  "result": {
+    "status": "ok",
+    "escalate": true,
+    "advisory": {
+      "route": {
+        "type": "choice",
+        "choice": "codex_decision",
+        "confidence": 0.65,
+        "probabilities": {
+          "implementation": 0.14,
+          "research": 0.1,
+          "review": 0.02,
+          "codex_decision": 0.74
+        },
+        "probability": 0.74
+      },
+      "researchNeeded": {
+        "type": "noul",
+        "noul": 0.64
+      },
+      "evidenceSufficient": {
+        "type": "noul",
+        "noul": 0.13
+      },
+      "reviewRisk": {
+        "type": "score",
+        "score": 0.21,
+        "confidence": 0.7,
+        "probabilities": {
+          "0": 0.8,
+          "1": 0.2,
+          "2": 0
+        },
+        "legend": {
+          "0": "Low: docs or tooling only, no app behavior change and no shared configuration.",
+          "1": "Moderate: implementation may touch app behavior, tests, or project configuration.",
+          "2": "High: security, secrets, data loss, global configuration, or an unclear rollback path."
+        }
+      },
+      "editsApp": false,
+      "researchMayEditApp": false,
+      "authorization": "none",
+      "requiresCodexDecision": true,
+      "confidenceIsPermission": false,
+      "commands": [],
+      "note": "Advisory only. Codex decides. Confidence is not permission. No model-provided command is executed."
+    },
+    "escalationReasons": [
+      "evidence_sufficient 0.13 is below 0.7",
+      "the model selected codex_decision"
+    ],
+    "reason": null,
+    "error": null,
+    "validationErrors": null,
+    "requiresCodexDecision": true,
+    "authorization": "none"
+  },
+  "response": {
+    "model": "jev-1.14.0",
+    "answers": {
+      "route": {
+        "type": "choice",
+        "choice": "codex_decision",
+        "confidence": 0.65,
+        "probabilities": {
+          "implementation": 0.14,
+          "research": 0.1,
+          "review": 0.02,
+          "codex_decision": 0.74
+        }
+      },
+      "research_needed": {
+        "type": "noul",
+        "noul": 0.64
+      },
+      "evidence_sufficient": {
+        "type": "noul",
+        "noul": 0.13
+      },
+      "review_risk": {
+        "type": "score",
+        "score": 0.21,
+        "confidence": 0.7,
+        "legend": {
+          "0": "Low: docs or tooling only, no app behavior change and no shared configuration.",
+          "1": "Moderate: implementation may touch app behavior, tests, or project configuration.",
+          "2": "High: security, secrets, data loss, global configuration, or an unclear rollback path."
+        },
+        "probabilities": {
+          "0": 0.8,
+          "1": 0.2,
+          "2": 0
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 906,
+      "output_tokens": 108
+    }
+  }
+}

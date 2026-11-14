@@ -1,0 +1,93 @@
+{
+  "capturedAt": "2026-11-14T08:27:33.982746+00:00",
+  "roleReversal": {
+    "principal": {
+      "agent": "opencode2",
+      "providerID": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "variant": "high"
+    },
+    "implementation": {
+      "agent": "codex",
+      "model": "gpt-6.1-sol",
+      "efforts": [
+        "low",
+        "high"
+      ],
+      "default": "high"
+    },
+    "research": {
+      "agent": "antigravity",
+      "model": "agy-default"
+    },
+    "decisionOwner": "OpenCode principal"
+  },
+  "codexLimitObserved": {
+    "provider": "codex",
+    "sessionUsedPercent": 100,
+    "resetsAt": "2026-11-14T17:12:00+07:00",
+    "note": "The Codex principal session stopped with usage_limit_exceeded; OpenCode Go remained available."
+  },
+  "offlineTests": {
+    "command": "node --test tools/orchestration/test/*.test.mjs",
+    "summary": {
+      "tests": 66,
+      "pass": 66,
+      "fail": 0
+    }
+  },
+  "principalPlan": {
+    "model": "opencode-go/deepseek-v4.1-flash",
+    "effort": "high",
+    "steps": [
+      "create-principal-terminal",
+      "wait-tui-idle",
+      "check-opencode-ready",
+      "send-principal-prompt"
+    ],
+    "wrapper": "/home/dani/.config/orca/linux-orca-cli-shim/orca terminal create --worktree current --title 'OpenCode principal' --command '/home/dani/.config/orca-harness/bin/opencode-principal.sh --session ses_orcahc0e5a49fa27c8875' --json",
+    "readinessRequires": "DeepSeek V4.1 Flash on OpenCode Go at high"
+  },
+  "implementationLowPlan": {
+    "model": "gpt-6.1-sol",
+    "effort": "low",
+    "steps": [
+      "worker-start"
+    ],
+    "command": "/home/dani/.config/orca/linux-orca-cli-shim/orca orchestration worker-start --agent codex --worktree current --spec-file /tmp/role-reversal-task.md --task-title Implementation --model gpt-6.1-sol --effort low --full --json"
+  },
+  "implementationHighPlan": {
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "steps": [
+      "worker-start"
+    ],
+    "command": "/home/dani/.config/orca/linux-orca-cli-shim/orca orchestration worker-start --agent codex --worktree current --spec-file /tmp/role-reversal-task.md --task-title Implementation --model gpt-6.1-sol --effort high --full --json"
+  },
+  "livePrincipalWrapperProof": {
+    "terminal": "term_ed239256-5126-4966-93bf-7e104411fe43",
+    "sessionId": "ses_orcahroleproof1",
+    "screenVariant": "high",
+    "promptAccepted": true,
+    "verifyCommand": "orca-team verify-session --session ses_orcahroleproof1 --json",
+    "verifyStatus": "high",
+    "observed": {
+      "providerID": "opencode-go",
+      "id": "deepseek-v4.1-flash",
+      "variant": "high"
+    },
+    "terminalClosed": true,
+    "note": "A disposable OpenCode terminal ran the installed principal wrapper; it showed DeepSeek V4.1 Flash on OpenCode Go at high and produced an assistant message at the same variant."
+  },
+  "install": {
+    "version": "1.1.0",
+    "doctor": "OK",
+    "harnessHome": "/home/dani/.config/orca-harness",
+    "obsoleteWrapperRemoved": "bin/opencode-implementation.sh",
+    "instructionTargets": [
+      "~/.codex/AGENTS.md",
+      "~/.config/opencode/AGENTS.md",
+      "~/.gemini/GEMINI.md"
+    ]
+  }
+}

@@ -1,0 +1,308 @@
+{
+  "capturedAt": "2026-11-14T06:31:13.185Z",
+  "cwd": "/tmp/opencode/proj",
+  "managedDoctor": {
+    "ok": true,
+    "version": "1.0.0",
+    "node": "v26.5.0",
+    "cwd": "/tmp/opencode/proj",
+    "orca": {
+      "path": "/home/dani/.config/orca/linux-orca-cli-shim/orca",
+      "source": "ORCA_CLI_COMMAND",
+      "runtimeReachable": true,
+      "appVersion": null
+    },
+    "opencode2": {
+      "installed": true,
+      "version": "opencode v2.3.0"
+    },
+    "agy": {
+      "installed": true,
+      "version": "1.5.8"
+    },
+    "typesafe": {
+      "envKey": true,
+      "keyFile": "/home/dani/.config/orca-harness/typesafe.env",
+      "keyFileExists": true,
+      "keyFileMode": "600",
+      "keyFileSecure": true,
+      "effectiveSource": "env"
+    },
+    "nodeSqlite": true,
+    "harness": {
+      "home": "/home/dani/.config/orca-harness",
+      "homeExists": true,
+      "launcherLink": "/home/dani/.local/bin/orca-team",
+      "launcherExists": true,
+      "wrapperExists": true,
+      "configScriptExists": true,
+      "instructionTargets": [
+        {
+          "id": "codex",
+          "file": "/home/dani/.codex/AGENTS.md",
+          "managed": true
+        },
+        {
+          "id": "opencode",
+          "file": "/home/dani/.config/opencode/AGENTS.md",
+          "managed": true
+        },
+        {
+          "id": "antigravity",
+          "file": "/home/dani/.gemini/GEMINI.md",
+          "managed": true
+        }
+      ]
+    },
+    "receiptsDir": "/home/dani/.local/state/orca-harness/receipts",
+    "boundary": "Orca does not automatically adopt this harness in every plain session. It is opt-in through orca-team or an explicit user request."
+  },
+  "crossProjectPrincipalPlan": {
+    "ok": true,
+    "role": "principal",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "worktree": "current",
+    "notes": [
+      "Codex gpt-6.1-sol high is supported by orca agent launch --model/--effort.",
+      "Run this from a plain shell, not from an existing agent session, to avoid duplicating the current principal."
+    ],
+    "steps": [
+      {
+        "name": "launch-principal",
+        "argv": [
+          "/home/dani/.config/orca/linux-orca-cli-shim/orca",
+          "agent",
+          "launch",
+          "--agent",
+          "codex",
+          "--worktree",
+          "current",
+          "--model",
+          "gpt-6.1-sol",
+          "--effort",
+          "high",
+          "--prompt",
+          "You are the Codex principal for the opt-in Orca team harness in this workspace. Read ~/.config/orca-harness/AGENTS.md and ~/.config/orca-harness/roles/codex.md before proceeding. You own systems analysis, architecture, delegation, review, and final acceptance. Do not edit app code: dispatch scoped implementation to the OpenCode worker with orca-team implementation. Do not start another principal or another copy of this session. Use native Orca mailbox supervision and worker_done; do not poll.",
+          "--json"
+        ],
+        "command": "/home/dani/.config/orca/linux-orca-cli-shim/orca agent launch --agent codex --worktree current --model gpt-6.1-sol --effort high --prompt 'You are the Codex principal for the opt-in Orca team harness in this workspace. Read ~/.config/orca-harness/AGENTS.md and ~/.config/orca-harness/roles/codex.md before proceeding. You own systems analysis, architecture, delegation, review, and final acceptance. Do not edit app code: dispatch scoped implementation to the OpenCode worker with orca-team implementation. Do not start another principal or another copy of this session. Use native Orca mailbox supervision and worker_done; do not poll.' --json",
+        "uses": null
+      }
+    ]
+  },
+  "plainLinuxSelectionPlan": {
+    "ok": true,
+    "role": "principal",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "worktree": "current",
+    "notes": [
+      "Codex gpt-6.1-sol high is supported by orca agent launch --model/--effort.",
+      "Run this from a plain shell, not from an existing agent session, to avoid duplicating the current principal."
+    ],
+    "steps": [
+      {
+        "name": "launch-principal",
+        "argv": [
+          "orca-ide",
+          "agent",
+          "launch",
+          "--agent",
+          "codex",
+          "--worktree",
+          "current",
+          "--model",
+          "gpt-6.1-sol",
+          "--effort",
+          "high",
+          "--prompt",
+          "You are the Codex principal for the opt-in Orca team harness in this workspace. Read ~/.config/orca-harness/AGENTS.md and ~/.config/orca-harness/roles/codex.md before proceeding. You own systems analysis, architecture, delegation, review, and final acceptance. Do not edit app code: dispatch scoped implementation to the OpenCode worker with orca-team implementation. Do not start another principal or another copy of this session. Use native Orca mailbox supervision and worker_done; do not poll.",
+          "--json"
+        ],
+        "command": "orca-ide agent launch --agent codex --worktree current --model gpt-6.1-sol --effort high --prompt 'You are the Codex principal for the opt-in Orca team harness in this workspace. Read ~/.config/orca-harness/AGENTS.md and ~/.config/orca-harness/roles/codex.md before proceeding. You own systems analysis, architecture, delegation, review, and final acceptance. Do not edit app code: dispatch scoped implementation to the OpenCode worker with orca-team implementation. Do not start another principal or another copy of this session. Use native Orca mailbox supervision and worker_done; do not poll.' --json",
+        "uses": null
+      }
+    ]
+  },
+  "devSelectionPlan": {
+    "ok": true,
+    "role": "principal",
+    "model": "gpt-6.1-sol",
+    "effort": "high",
+    "worktree": "current",
+    "notes": [
+      "Codex gpt-6.1-sol high is supported by orca agent launch --model/--effort.",
+      "Run this from a plain shell, not from an existing agent session, to avoid duplicating the current principal."
+    ],
+    "steps": [
+      {
+        "name": "launch-principal",
+        "argv": [
+          "orca-dev",
+          "agent",
+          "launch",
+          "--agent",
+          "codex",
+          "--worktree",
+          "current",
+          "--model",
+          "gpt-6.1-sol",
+          "--effort",
+          "high",
+          "--prompt",
+          "You are the Codex principal for the opt-in Orca team harness in this workspace. Read ~/.config/orca-harness/AGENTS.md and ~/.config/orca-harness/roles/codex.md before proceeding. You own systems analysis, architecture, delegation, review, and final acceptance. Do not edit app code: dispatch scoped implementation to the OpenCode worker with orca-team implementation. Do not start another principal or another copy of this session. Use native Orca mailbox supervision and worker_done; do not poll.",
+          "--json"
+        ],
+        "command": "orca-dev agent launch --agent codex --worktree current --model gpt-6.1-sol --effort high --prompt 'You are the Codex principal for the opt-in Orca team harness in this workspace. Read ~/.config/orca-harness/AGENTS.md and ~/.config/orca-harness/roles/codex.md before proceeding. You own systems analysis, architecture, delegation, review, and final acceptance. Do not edit app code: dispatch scoped implementation to the OpenCode worker with orca-team implementation. Do not start another principal or another copy of this session. Use native Orca mailbox supervision and worker_done; do not poll.' --json",
+        "uses": null
+      }
+    ]
+  },
+  "selectedFailureDoctor": {
+    "ok": false,
+    "version": "1.0.0",
+    "node": "v26.5.0",
+    "cwd": "/tmp/opencode/proj",
+    "orca": {
+      "path": "orca-ide",
+      "source": "linux-outside-orca",
+      "runtimeReachable": null,
+      "appVersion": null
+    },
+    "opencode2": {
+      "installed": true,
+      "version": "opencode v2.3.0"
+    },
+    "agy": {
+      "installed": true,
+      "version": "1.5.8"
+    },
+    "typesafe": {
+      "envKey": true,
+      "keyFile": "/home/dani/.config/orca-harness/typesafe.env",
+      "keyFileExists": true,
+      "keyFileMode": "600",
+      "keyFileSecure": true,
+      "effectiveSource": "env"
+    },
+    "nodeSqlite": true,
+    "harness": {
+      "home": "/home/dani/.config/orca-harness",
+      "homeExists": true,
+      "launcherLink": "/home/dani/.local/bin/orca-team",
+      "launcherExists": true,
+      "instructionTargets": [
+        {
+          "id": "codex",
+          "file": "/home/dani/.codex/AGENTS.md",
+          "managed": true
+        },
+        {
+          "id": "opencode",
+          "file": "/home/dani/.config/opencode/AGENTS.md",
+          "managed": true
+        },
+        {
+          "id": "antigravity",
+          "file": "/home/dani/.gemini/GEMINI.md",
+          "managed": true
+        }
+      ]
+    },
+    "receiptsDir": "/home/dani/.local/state/orca-harness/receipts",
+    "boundary": "Orca does not automatically adopt this harness in every plain session. It is opt-in through orca-team or an explicit user request."
+  },
+  "mixedCodexImplementationPlan": {
+    "ok": true,
+    "role": "implementation",
+    "model": null,
+    "effort": null,
+    "worktree": "current",
+    "notes": [
+      "Interactive OpenCode has no --model flag and Orca rejects --effort for OpenCode at launch.",
+      "The wrapper sets OPENCODE_CONFIG_CONTENT for this private standalone OpenCode process so the build agent uses opencode-go/deepseek-v4.1-flash#high.",
+      "After worker-start, verify the actual session message model with: orca-team verify-session --session <id>.",
+      "No worker-start retry is automatic; uncertain starts are recorded with Orca recovery commands."
+    ],
+    "steps": [
+      {
+        "name": "create-terminal",
+        "argv": [
+          "/home/dani/.config/orca/linux-orca-cli-shim/orca",
+          "terminal",
+          "create",
+          "--worktree",
+          "current",
+          "--title",
+          "Implementation",
+          "--command",
+          "/home/dani/.config/orca-harness/bin/opencode-implementation.sh --session ses_orcah7111d2e18ed79e31",
+          "--json"
+        ],
+        "command": "/home/dani/.config/orca/linux-orca-cli-shim/orca terminal create --worktree current --title Implementation --command '/home/dani/.config/orca-harness/bin/opencode-implementation.sh --session ses_orcah7111d2e18ed79e31' --json",
+        "uses": null
+      },
+      {
+        "name": "wait-tui-idle",
+        "argv": [
+          "/home/dani/.config/orca/linux-orca-cli-shim/orca",
+          "terminal",
+          "wait",
+          "--terminal",
+          "{terminal}",
+          "--for",
+          "tui-idle",
+          "--timeout-ms",
+          "90000",
+          "--json"
+        ],
+        "command": "/home/dani/.config/orca/linux-orca-cli-shim/orca terminal wait --terminal '{terminal}' --for tui-idle --timeout-ms 90000 --json",
+        "uses": "terminal"
+      },
+      {
+        "name": "worker-start",
+        "argv": [
+          "/home/dani/.config/orca/linux-orca-cli-shim/orca",
+          "orchestration",
+          "worker-start",
+          "--terminal",
+          "{terminal}",
+          "--worktree",
+          "current",
+          "--spec-file",
+          "<inline-task>",
+          "--task-title",
+          "Implementation",
+          "--full",
+          "--json"
+        ],
+        "command": "/home/dani/.config/orca/linux-orca-cli-shim/orca orchestration worker-start --terminal '{terminal}' --worktree current --spec-file '<inline-task>' --task-title Implementation --full --json",
+        "uses": "terminal"
+      }
+    ]
+  },
+  "openCodeWorkerRefusal": {
+    "ok": false,
+    "error": "Refusing to start an implementation worker from an OpenCode implementation session; this would launch a copy of the current worker. The Codex principal must dispatch implementation."
+  },
+  "verifyHighSession": {
+    "ok": true,
+    "status": "high",
+    "reason": "observed assistant-message model matches the expected high variant",
+    "expected": {
+      "providerID": "opencode-go",
+      "id": "deepseek-v4.1-flash",
+      "variant": "high"
+    },
+    "observed": [
+      {
+        "providerID": "opencode-go",
+        "id": "deepseek-v4.1-flash",
+        "variant": "high"
+      }
+    ],
+    "sessionId": "ses_e277f1203ffe371LU2z6IEm32X",
+    "dbPath": "/home/dani/.local/share/opencode/opencode.db"
+  }
+}
