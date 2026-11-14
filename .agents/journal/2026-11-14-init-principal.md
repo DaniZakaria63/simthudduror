@@ -47,3 +47,12 @@ Native build/runtime behavior is unchanged by the planned tooling/docs/tests wor
 
 - `git diff --check`: exit 0. `cmp` against the original `docs/plans/init.prompt.txt`: exit 0, source preserved verbatim. Parsed `docs/api/inventory.json` and checked relative Markdown targets in principal-owned analysis/API/reference/journal documents: exit 0.
 - Principal is creating a scoped `foundation:` documentation checkpoint for the source prompt, analysis, reviewed references, API snapshot, model/Jev evidence and this journal. Implementation/config/tests and final acceptance remain separate and pending.
+
+## Workflow guidance ownership
+
+- Reassigned `AGENTS.md`, `README.md`, `docs/ARCHITECTURE.md`, new `docs/DEVELOPMENT.md` and `.agents/journal/README.md` to principal via native mailbox, leaving executor ownership of app/config/tests, check execution and its own journal intact.
+- Wrote durable native Android/iOS priorities, feature-local component/service/local/state/UI rules, actual shared-component promotion rule, React reading order, source prompt→neighbor plan convention, journal content, dedicated worktrees/branches, scoped commit format, normal push after checks and worktree retention until human merge confirmation.
+- Updated command documentation for full-source 81% coverage and focused boundary-rule tests. Documented alias alignment and native verification limits. Replaced nonexistent branch-local harness links with instructions for the already installed opt-in launcher, preserving all role and native-mailbox boundaries. Original checkout's uncommitted harness remains untouched. No app source was edited by principal.
+
+- Validated every relative Markdown target in updated AGENTS/README/architecture/developer guide/journal index; check passed. Scoped `git diff --check` passed. `git diff --exit-code 06e697f -- src android ios` passed, confirming application and native-host source remain identical to the pre-task baseline at this checkpoint.
+- Principal commits these documentation-only workflow rules separately; implementation tests/config, executor journal and final acceptance/push remain pending.

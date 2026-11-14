@@ -69,6 +69,12 @@ git worktree add ../simtudduror-legacy dev-legacy   # optional read-only checkou
 Feature rule: a feature may import `src/shared` and `src/navigation/types`, but features never
 import each other. The reader receives everything it needs through route params.
 
+## Engineering workflow
+
+[docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) defines the initialization conventions: native Android/iOS priorities, feature ownership, structured React files, prompt-to-plan naming, agent journals, branch/worktree isolation, scoped commits, verification and push/retention rules. [AGENTS.md](AGENTS.md) is the concise agent entry point. Future source prompts stay `*.prompt.txt`; their same-basename interpretations are `*.plan.md`.
+
+The sole API provider is `~/WebstormProjects/maulid.id`; its dated [contract inventory](docs/api/README.md) distinguishes research proposals from implemented wire contracts. This reader remains offline. All agentic changes are recorded in [.agents/journal](.agents/journal/README.md).
+
 ## Getting started
 
 Prerequisites: Node.js ≥ 22.11, JDK 17–21, Android SDK (platform 37, build-tools 37, NDK 27.1)
@@ -94,8 +100,10 @@ npm run ios
 | `npm run android` | Build and launch the Android app (requires a running emulator/device). |
 | `npm run ios` | Build and launch the iOS app (macOS only). |
 | `npm run android:build` | Build the Android debug APK without installing. |
-| `npm test` / `npm run test:ci` | Run Jest (CI mode in the latter). |
-| `npm run lint` | ESLint (`@react-native` config). |
+| `npm test` / `npm run test:ci` | Run Jest with full-source coverage and an 81% floor for every metric (CI mode in the latter). |
+| `npm run test:coverage` | Run serialized Jest with an explicit coverage report. |
+| `npm run test:rules` | Verify allowed/forbidden feature import fixtures. |
+| `npm run lint` | ESLint (`@react-native` config plus local feature-boundary enforcement). |
 | `npm run typecheck` | `tsc --noEmit`. |
 | `npm run format` / `npm run format:check` | Prettier write / verify (`src`, `__tests__`, JS/JSON configs). |
 
