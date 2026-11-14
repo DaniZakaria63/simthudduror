@@ -12,4 +12,4 @@ Each entry records:
 
 Never journal credentials, keys, private environment file contents, or invented test/model/runtime results. Do not treat a source-read or plan entry as implementation acceptance. Existing historical migration evidence remains in `docs/`; new work is journaled here rather than reconstructing unsupported old run details.
 
-The initialization principal entry is [2026-11-14-init-principal.md](2026-11-14-init-principal.md). Executor verification belongs in its own entry, and principal acceptance/delivery is recorded after review.
+The initialization principal entry is [2026-11-14-init-principal.md](2026-11-14-init-principal.md). Executor verification belongs in its own entry, and principal acceptance/delivery is recorded after review. The architecture-skills extraction entry is [2026-11-14-skills.md](2026-11-14-skills.md).
