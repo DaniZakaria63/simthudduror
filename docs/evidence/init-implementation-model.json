@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "status": "high",
+  "reason": "observed assistant-message model matches the expected high variant",
+  "expected": {
+    "providerID": "opencode-go",
+    "id": "deepseek-v4.1-flash",
+    "variant": "high"
+  },
+  "observed": [
+    {
+      "providerID": "opencode-go",
+      "id": "deepseek-v4.1-flash",
+      "variant": "high"
+    }
+  ],
+  "sessionId": "ses_orcah09a8f2d01aade08b",
+  "dbPath": "/home/dani/.local/share/opencode/opencode.db"
+}

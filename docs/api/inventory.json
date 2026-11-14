@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-11-14T06:57:38.230872+00:00",
+  "provider": {
+    "path": "/home/dani/WebstormProjects/maulid.id",
+    "gitHead": "1a4c44a7a10249d963cc65655367781abff5e9e2",
+    "includesUncommittedFiles": true,
+    "readOnly": true
+  },
+  "status": "planning-only-no-implemented-contracts",
+  "scope": "All eight non-Git files at this observation are instructions, plans, research, journals or design metadata. Research proposes two endpoints and domain models; no application scaffold, handler, schema or implemented wire contract exists.",
+  "inspection": {
+    "excludedDirectories": [
+      ".git"
+    ],
+    "method": "Enumerated and fingerprinted every non-Git file; read instructions, prompt, architecture plan, design plan and journal; searched all text files for HTTP methods, API paths, endpoint and schema definitions. Design metadata is not an API contract.",
+    "sourceFiles": [
+      {
+        "path": ".agents/journal/2026-11-14-initial.md",
+        "bytes": 3481,
+        "sha256": "ab119e4fc43a1b780eed76fcc102e39c565f51cb5a5584a180c19604d3cc1a04"
+      },
+      {
+        "path": ".agents/journal/2026-11-14-research.md",
+        "bytes": 1502,
+        "sha256": "f8ade04074c8a58db80e601b6ae1e6c5737515fe6da91595179737b86112a614"
+      },
+      {
+        "path": ".taste-skill/direction.json",
+        "bytes": 26244,
+        "sha256": "07c718dd778ee648d60e0e82fa1e7651f903d49ac77edbeb74dec55937b1cba1"
+      },
+      {
+        "path": "AGENTS.md",
+        "bytes": 1141,
+        "sha256": "5de02585b12ea5febdd5e2d1b96a8690997811e53e9281b282476543c65f8b8e"
+      },
+      {
+        "path": "docs/plans/initial.design.md",
+        "bytes": 5342,
+        "sha256": "cc8e72fdc107f16415ec2cb719c6d8dace8433dd6a12388fa9d7363514e9b2bf"
+      },
+      {
+        "path": "docs/plans/initial.plan.md",
+        "bytes": 10928,
+        "sha256": "ddea60cf02ae76f5a8e891b68f7822ed12053be2cd66e28bceb81de78642adf7"
+      },
+      {
+        "path": "docs/plans/initial.prompt.txt",
+        "bytes": 2521,
+        "sha256": "4c546e56fb1694d4bf83ee644d0b92866bc30947d01336f0fd86c28c73ceb1be"
+      },
+      {
+        "path": "docs/research/initial.sources.md",
+        "bytes": 12888,
+        "sha256": "fafce2839b01a9b2bf2441557d87c1caeb3c54dab4b6865a5d3c46354648adb7"
+      }
+    ]
+  },
+  "plannedEvidence": [
+    {
+      "source": "docs/plans/initial.plan.md",
+      "section": "Required behavior, item 1",
+      "value": "/api/v1",
+      "kind": "proposed-api-prefix",
+      "contractStatus": "planning-only; no HTTP method, endpoint resource, payload or response is specified"
+    },
+    {
+      "source": "AGENTS.md",
+      "section": "Domain rules",
+      "value": "Only validated users may create posts; other accounts may interact.",
+      "kind": "domain-policy",
+      "contractStatus": "No authentication mechanism, validation field wire schema or endpoint is defined."
+    },
+    {
+      "source": "docs/research/initial.sources.md",
+      "section": "6. Minimal Vertical Slice Recommendation",
+      "kind": "proposed-endpoint",
+      "method": "GET",
+      "path": "/api/v1/posts",
+      "contractStatus": "Research recommendation only; no implemented handler, auth, request/response serialization or status contract."
+    },
+    {
+      "source": "docs/research/initial.sources.md",
+      "section": "6. Minimal Vertical Slice Recommendation",
+      "kind": "proposed-endpoint",
+      "method": "POST",
+      "path": "/api/v1/posts",
+      "contractStatus": "Research recommendation only; validated author proposed, with no implemented validation/auth/wire contract."
+    },
+    {
+      "source": "docs/research/initial.sources.md",
+      "section": "6. Minimal Vertical Slice Recommendation",
+      "kind": "proposed-domain-models",
+      "models": {
+        "Post": [
+          "ID",
+          "Title",
+          "Description",
+          "EventDate",
+          "Location",
+          "AuthorID",
+          "CreatedAt"
+        ],
+        "User": [
+          "ID",
+          "Name",
+          "Role",
+          "IsValidated"
+        ]
+      },
+      "contractStatus": "Proposed domain names; field types, JSON names, required/null rules, enum vocabulary and endpoint placement are undefined."
+    }
+  ],
+  "endpointContracts": [],
+  "wireContract": {
+    "baseUrls": null,
+    "authentication": null,
+    "requestSchemas": null,
+    "responseSchemas": null,
+    "statusCodes": null,
+    "errorEnvelope": null,
+    "pagination": null,
+    "rateLimits": null
+  },
+  "unknownFieldsMeaning": "null means not defined by a provider wire contract at this observation; it does not mean the future API lacks the capability.",
+  "consumerState": "The mobile app remains an offline bundled-image reader; no API client, endpoint, authentication or backend dependency is introduced.",
+  "contractDiscrepancies": [
+    {
+      "sources": [
+        "docs/plans/initial.plan.md",
+        "docs/research/initial.sources.md"
+      ],
+      "description": "Principal planning refers to validation_status; research uses is_validated and IsValidated. No implemented or published wire schema resolves the naming or value vocabulary. Mobile consumers must wait for a provider contract."
+    }
+  ]
+}

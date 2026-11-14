@@ -1,0 +1,37 @@
+This project is a react native cli based that focus on native android and native ios. The javascript side is only to support them.
+Read all codebase first and read the rule below.
+
+Architecture and Code Pattern approach:
+- Modular by feature based 
+- Each feature has its own component, service, local, state, and ui management that closed from others
+- For component that used by more than one feature, it suposed defined as global component
+- All agentic code creation supposed documented under .agents/journal
+- The react screen and component supposed to have structured code which top is the import, variable. middle is the UI output, and bottom is the styling. Another files adjust accordingly.
+- Write unit test with coverage > 80%
+
+WebApp API Provider:
+- The original and the only source of endpoint project is located at: ~/WebstormProjects/maulid.id
+- Extract all api data contract into docs/api as documentation for futher work.
+
+Branching strategy:
+- One work of plan prompt supposed work under specific worktree by specific branch 
+- Small commit is necessary with this structure: {feature name}: {short changes description}
+- Push to origin when all work done 
+- Remove worktree when human said the branch been merged
+
+Orchestration:
+- Use Codex gpt sol in high effor as System Analyst and Principal
+- Use Opencode Go Deepseek-Flash V4.1 in High effort as executor for mostly all tasks
+- Use Antigravity for research and searching purpose. 
+- Use Jev by Typesafe to help all model decision. 
+
+For agentic react native reference read this:
+- https://agenticskills.io/skills/react-native-skills
+- https://github.com/callstackincubator/agent-skills
+- https://agenticskills.io/skills/react-native-best-practices
+
+Read verbatim and deeply analyze about this prompt. 
+For all future work, original prompt file have this structure: *.prompt.txt
+Then the interpretation and analysis of the prompt result will write as *.plan.md 
+
+All those information supopsed to be extracted to all this codebase accordingly. 
