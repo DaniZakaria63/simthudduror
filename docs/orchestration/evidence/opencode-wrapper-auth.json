@@ -1,0 +1,142 @@
+{
+  "capturedAt": "2026-11-14T06:23:32.375Z",
+  "failedSmoke": {
+    "receipt": "1794636176674-2754ef5e85edec04-implementation",
+    "taskId": "task_4dcc5dea2b6b",
+    "dispatchId": "ctx_e3563cef0b68",
+    "runId": "run_3ed0be1875a1",
+    "sessionId": "ses_orcahc7ef6a75a880ce8b",
+    "symptom": "worker-start returned state ready/input_accepted, but the OpenCode session was never created; the TUI showed the high model plus a startup integration/MCP blocker, and the task prompt was never submitted.",
+    "sessionCreated": false
+  },
+  "credentialPropagation": {
+    "orcaManagedOpenCodeAccounts": [],
+    "activeAccountId": null,
+    "normalWorkerHome": "/home/dani",
+    "normalWorkerPrivateOpenCodeProfile": null,
+    "terminalProbeHome": "/home/dani",
+    "terminalProbeOpenCodeConfigDir": null,
+    "conclusion": "The wrapper inherits the same HOME/XDG data and global OpenCode Go credential as the normal worker. There is no managed OpenCode account profile to propagate."
+  },
+  "rootCause": {
+    "raceProbeSession": "ses_orcahraceprobe1",
+    "raceProbeResult": {
+      "status": "pending",
+      "reason": "session has not been created yet"
+    },
+    "raceProbeScreenExcerpt": [
+      "                                                                                                ┃  MCP server failed: supabase  › Open MCP servers  ┃",
+      "                                                                                                ┃  Run /mcps to view details.                       ┃",
+      "                                      ┃  Reply with OK only. Do not use any tools.",
+      "                                      ┃  Build · DeepSeek V4.1 Flash 1017 OpenCode Go · high",
+      "  ⊙ 1 MCP failed /mcps                                                                                                                          2.3.0"
+    ],
+    "explanation": "tui-idle can be satisfied before the OpenCode provider/MCP startup settles. A startup modal swallowed Enter, so the prompt stayed in the composer and no session was created."
+  },
+  "fix": {
+    "privateConfig": "The wrapper generates OPENCODE_CONFIG_CONTENT from the real global config: build agent at opencode-go/deepseek-v4.1-flash#high, with every MCP server disabled for this private process only. No headers, environment, or secrets are copied.",
+    "readinessGate": "After tui-idle the launcher waits 4s, reads the rendered TUI screen, and refuses to send the task if Connect an integration, MCP server failed, or a non-ready composer is visible.",
+    "verificationGate": "The launcher does not call a worker started on input acceptance alone: pending assistant-message proof yields awaiting_verification, mismatch yields failed, high yields started."
+  },
+  "generatedConfig": {
+    "default_agent": "build",
+    "model": {
+      "providerID": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "variant": "high"
+    },
+    "mcp": {
+      "context7": {
+        "type": "remote",
+        "disabled": true
+      },
+      "upwork": {
+        "type": "remote",
+        "disabled": true
+      },
+      "figma": {
+        "type": "remote",
+        "disabled": true
+      },
+      "supabase": {
+        "type": "remote",
+        "disabled": true
+      },
+      "figcraft": {
+        "type": "local",
+        "disabled": true
+      },
+      "browse": {
+        "type": "local",
+        "disabled": true
+      }
+    },
+    "containsHeaders": false,
+    "containsEnvironment": false
+  },
+  "realOrcaTerminalProof": {
+    "terminal": "term_f7f631a6-bb1b-4d79-80ad-dc72ef9a6e77",
+    "sessionId": "ses_orcahgatedprobe2",
+    "readinessScreen": [
+      "                                      ┃  Ask anything… \"Fix broken tests\"",
+      "                                      ┃  Build · DeepSeek V4.1 Flash 1017 OpenCode Go · high",
+      "  ⊙ 0 MCP /mcps                                                                                                                                 2.3.0"
+    ],
+    "verify": {
+      "status": "high",
+      "reason": "observed assistant-message model matches the expected high variant",
+      "observed": [
+        {
+          "providerID": "opencode-go",
+          "id": "deepseek-v4.1-flash",
+          "variant": "high"
+        }
+      ]
+    },
+    "terminalClosed": true,
+    "note": "A real Orca-created terminal ran the installed wrapper with the gated sequence and a harmless prompt. This is not a supervised worker launch; it proves the auth context and high assistant-message model in the actual launch environment."
+  },
+  "exactRecoveryCommand": "orca orchestration worker-start --task task_4dcc5dea2b6b --terminal term_187476a3-defa-4e5c-acba-24e3724f9a3d --worktree current --run run_3ed0be1875a1 --full --json",
+  "recoveryNote": "Inspect the task state first. --retry-of is only for the latest settled dispatch of a failed or blocked task. This task was already ready, so the successful recovery attached the existing ready terminal without --retry-of; no duplicate terminal or fresh task was created.",
+  "exactRecoveryPlan": {
+    "taskId": "task_4dcc5dea2b6b",
+    "terminal": "term_187476a3-defa-4e5c-acba-24e3724f9a3d",
+    "command": "orca orchestration worker-start --task task_4dcc5dea2b6b --terminal term_187476a3-defa-4e5c-acba-24e3724f9a3d --worktree current --run run_3ed0be1875a1 --full --json"
+  },
+  "retryOfAttempt": {
+    "receipt": "1794637933921-57694587f00c5a97-implementation",
+    "receiptPath": "/tmp/orca-high-smoke-retry.json",
+    "errorCode": "task_not_startable",
+    "message": "Task task_4dcc5dea2b6b cannot retry from Dispatch ctx_e3563cef0b68. Orchestration mutation request ID: d246c248-4701-4a57-98c6-d7c8d89ca4aa.",
+    "taskStatus": "ready",
+    "nextSteps": [
+      "--retry-of must name the latest settled Dispatch of a failed or blocked Task; check orca orchestration dispatch-show --task task_4dcc5dea2b6b --json and orca orchestration worker-show --dispatch ctx_e3563cef0b68 --json."
+    ]
+  },
+  "supervisedSmoke": {
+    "taskId": "task_4dcc5dea2b6b",
+    "dispatchId": "ctx_06c9feb81d95",
+    "sessionId": "ses_orcahf25c69259dbbec9a",
+    "workerDone": {
+      "outcome": "succeeded",
+      "reportedWorkerDone": true,
+      "filesEdited": [],
+      "cwd": "/home/dani/StudioProjects/simthudduror"
+    },
+    "modelProof": {
+      "verifyCommand": "orca-team verify-session --session ses_orcahf25c69259dbbec9a --json",
+      "ok": true,
+      "status": "high",
+      "expected": {
+        "providerID": "opencode-go",
+        "id": "deepseek-v4.1-flash",
+        "variant": "high"
+      },
+      "observedAssistantMessage": {
+        "providerID": "opencode-go",
+        "id": "deepseek-v4.1-flash",
+        "variant": "high"
+      }
+    }
+  }
+}

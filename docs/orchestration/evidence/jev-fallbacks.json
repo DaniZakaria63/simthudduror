@@ -1,0 +1,38 @@
+{
+  "capturedAt": "2026-11-14T05:45:47.547Z",
+  "note": "Deterministic offline simulations; no network call and no real API key.",
+  "results": {
+    "network_error": {
+      "status": "unavailable",
+      "escalate": true,
+      "advisory": null,
+      "requiresCodexDecision": true,
+      "authorization": "none",
+      "errorCode": "network_error"
+    },
+    "unauthorized": {
+      "status": "unavailable",
+      "escalate": true,
+      "advisory": null,
+      "requiresCodexDecision": true,
+      "authorization": "none",
+      "errorCode": "unauthorized"
+    },
+    "invalid_json": {
+      "status": "invalid_response",
+      "escalate": true,
+      "advisory": null,
+      "requiresCodexDecision": true,
+      "authorization": "none",
+      "errorCode": "invalid_json"
+    },
+    "invalid_schema": {
+      "status": "invalid_response",
+      "escalate": true,
+      "advisory": null,
+      "requiresCodexDecision": true,
+      "authorization": "none",
+      "errorCode": "schema_invalid"
+    }
+  }
+}

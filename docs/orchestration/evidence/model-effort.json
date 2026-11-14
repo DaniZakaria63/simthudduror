@@ -1,0 +1,105 @@
+{
+  "capturedAt": "2026-11-14T05:42:00Z",
+  "principal": {
+    "agent": "codex",
+    "requestedModel": "gpt-6.1-sol",
+    "requestedEffort": "high",
+    "sourceOfTruth": [
+      "~/.codex/config.toml contains model = \"gpt-6.1-sol\" and model_reasoning_effort = \"high\" (read-only observation).",
+      "orca agent launch --help documents --model <id> and --effort <level> and requires --effort to accompany --model.",
+      "orca-team plan principal emits --agent codex --model gpt-6.1-sol --effort high.",
+      "Workspace opencode/Codex catalog caches list gpt-6.1-sol with high among its efforts."
+    ],
+    "launchedDuringThisTask": false,
+    "whyNotLaunched": "The current task is already running under the Codex coordinator. Launching another principal would duplicate it. The command is covered by construction tests and must be run from a plain shell when a new principal is genuinely wanted."
+  },
+  "implementation": {
+    "requested": {
+      "providerID": "opencode-go",
+      "model": "deepseek-v4.1-flash",
+      "variant": "high"
+    },
+    "bootstrapObservation": {
+      "sessionId": "ses_e27846df8fferbB6QINfjim7Cq",
+      "sessionModel": {
+        "providerID": "opencode-go",
+        "id": "deepseek-v4.1-flash",
+        "variant": "max"
+      },
+      "assistantMessageModel": {
+        "providerID": "opencode-go",
+        "id": "deepseek-v4.1-flash",
+        "variant": "max"
+      },
+      "conclusion": "The bootstrap worker actually ran at max, not the requested high. This is disclosed rather than claimed as high."
+    },
+    "explicitRunProof": {
+      "sessionId": "ses_e277f1203ffe371LU2z6IEm32X",
+      "command": "opencode run --archived --format json --title \"orca-harness high variant verification 2\" --model 'opencode-go/deepseek-v4.1-flash#high' \"Reply with OK only. Do not use any tools.\"",
+      "sessionModel": {
+        "providerID": "opencode-go",
+        "id": "deepseek-v4.1-flash",
+        "variant": "high"
+      },
+      "result": "OK"
+    },
+    "standaloneAgentConfigProof": {
+      "sessionId": "ses_e277e0f12ffenez2KnOzYl7fAb",
+      "command": "OPENCODE_CONFIG_CONTENT='{\"agents\":{\"build\":{\"model\":{\"providerID\":\"opencode-go\",\"model\":\"deepseek-v4.1-flash\",\"variant\":\"high\"}}}}' opencode run --standalone --archived --agent build --format json --title \"orca-harness standalone agent config verification\" \"Reply with OK only. Do not use any tools.\"",
+      "assistantMessageModel": {
+        "providerID": "opencode-go",
+        "id": "deepseek-v4.1-flash",
+        "variant": "high"
+      },
+      "result": "OK",
+      "whyItMatters": "This is the same private standalone config path used by bin/opencode-implementation.sh. It proves OpenCode v2 applies the build-agent model variant without changing global configuration."
+    },
+    "sessionIdProbe": {
+      "sessionId": "ses_harness1794633857",
+      "command": "opencode run --standalone --archived --format json --session ses_harness1794633857 --model 'opencode-go/deepseek-v4.1-flash#high' \"Reply with OK only. Do not use any tools.\"",
+      "sessionModel": {
+        "providerID": "opencode-go",
+        "id": "deepseek-v4.1-flash",
+        "variant": "high"
+      },
+      "conclusion": "A caller-generated session id is accepted, so the launcher can verify the exact interactive worker session later."
+    },
+    "interactiveWrapper": {
+      "launchedDuringThisTask": false,
+      "whyNotLaunched": "No supervised implementation worker was launched by this worker; a bounded real Orca terminal ran the installed wrapper with a harmless prompt and produced assistant-message high proof. The subsequent supervised smoke passed on dispatch ctx_06c9feb81d95 / session ses_orcahf25c69259dbbec9a.",
+      "verificationCommand": "orca-team verify-session --session <session-id> --json",
+      "limitation": "OPENCODE_CONFIG_CONTENT is observable OpenCode v2 behavior but is not a documented public OpenCode configuration API. The global OpenCode model default is deliberately not changed; if a future OpenCode release rejects this injection, use the verified explicit-run fallback or update the wrapper.",
+      "realOrcaTerminalProof": {
+        "sessionId": "ses_orcahgatedprobe2",
+        "status": "high",
+        "reason": "actual assistant-message variant high after the private wrapper/readiness sequence",
+        "terminalWasRealOrcaTerminal": true,
+        "supervisedWorker": false
+      },
+      "failedSupervisedSmoke": {
+        "receipt": "1794636176674-2754ef5e85edec04-implementation",
+        "taskId": "task_4dcc5dea2b6b",
+        "dispatchId": "ctx_e3563cef0b68",
+        "sessionId": "ses_orcahc7ef6a75a880ce8b",
+        "outcome": "session never created; startup modal swallowed the prompt",
+        "fix": "MCP disabled for private worker + bounded readiness gate + awaiting_verification status"
+      },
+      "realTerminalProbeLaunched": true,
+      "supervisedSmoke": {
+        "taskId": "task_4dcc5dea2b6b",
+        "dispatchId": "ctx_06c9feb81d95",
+        "sessionId": "ses_orcahf25c69259dbbec9a",
+        "status": "high",
+        "workerDone": "succeeded",
+        "filesEdited": 0
+      }
+    }
+  },
+  "evidenceSources": [
+    "Read-only OpenCode session_v2 and session_message rows.",
+    "~/.codex/config.toml (model and effort only; no secrets).",
+    "orca agent launch --help.",
+    "Live Jev evidence at docs/orchestration/evidence/jev-orchestration-routing.json.",
+    "Offline fallback evidence at docs/orchestration/evidence/jev-offline-fallback.json."
+  ]
+}
