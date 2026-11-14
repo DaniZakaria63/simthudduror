@@ -102,13 +102,14 @@ names are recorded separately from wire contracts, with authentication,
 payloads, schemas, statuses, pagination and base URLs explicitly unknown.
 
 During final verification the provider changed while keeping the same Git HEAD
-`1a4c44a`: 21 non-Git files were present, versus the eight fingerprinted in
-`docs/api/inventory.json` (13 additions and four modified files). The drift
-check embedded in the API README therefore fails. The added files are journals,
-raw research extracts and image assets; no implemented handler, route
-registration or serialized schema was found. The principal owns `docs/api` and
-will re-extract/revalidate before acceptance. No endpoint was invented or used
-by the app.
+`1a4c44a`: it grew well beyond the eight fingerprinted files to include
+additional journals, raw research extracts, image assets and credits, and
+modified planning/research files. The drift check embedded in the API README
+therefore fails; the exact file count is a moving target because the provider is
+being developed concurrently. The added material contained no implemented
+handler, route registration or serialized schema. The principal owns `docs/api`
+and will re-extract/revalidate before acceptance. No endpoint was invented or
+used by the app.
 
 ## Behavior preservation and limitations
 

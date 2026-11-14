@@ -108,17 +108,16 @@ with exit 1. The probe file was deleted; it is not part of the commit.
 ## Known limitations and pending work
 
 - **API inventory drift was observed at final inspection.** Provider Git HEAD is
-  still `1a4c44a7a10249d963cc65655367781abff5e9e2`, but the provider now has 21
-  non-Git files versus the 8 fingerprinted in `docs/api/inventory.json`: 13
-  added paths (`.agents/journal/2026-11-14-principal-review.md`, four image
-  assets plus `assets/credits.json`, seven `docs/research/raw/*` extracts) and
-  4 changed files (two provider journals, `docs/plans/initial.plan.md`,
-  `docs/research/initial.sources.md`). The drift check from `docs/api/README.md`
-  therefore fails. Reinspection of those files still showed planning/research
-  material, not an implemented route/handler/schema, but the recorded snapshot
-  is stale. The principal owns `docs/api` and committed to revalidate freshness
-  before acceptance; this executor did not edit that directory or invent an
-  endpoint contract.
+  still `1a4c44a7a10249d963cc65655367781abff5e9e2`, but the provider now contains
+  substantially more non-Git files than the eight fingerprinted in
+  `docs/api/inventory.json`: added journals, raw research extracts, image assets
+  and credits, plus modified planning/research files. The provider is being
+  developed concurrently, so the exact count is a moving target; the drift
+  check from `docs/api/README.md` fails. Reinspection of the added material still
+  showed planning/research content, not an implemented route, handler or
+  schema, but the recorded snapshot is stale. The principal owns `docs/api` and
+  committed to revalidate freshness before acceptance; this executor did not
+  edit that directory or invent an endpoint contract.
 - No native Android build or emulator run was performed: no native host,
   dependency or runtime behavior changed, and the task required no native
   build for this scope. Prior migration screenshots remain historical evidence.
