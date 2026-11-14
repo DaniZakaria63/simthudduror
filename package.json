@@ -5,14 +5,16 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "lint": "eslint .",
+    "lint": "eslint --rulesdir tools/eslint/rules .",
     "start": "react-native start",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "test:ci": "jest --ci --silent",
+    "test:coverage": "jest --coverage --runInBand",
+    "test:rules": "node tools/eslint/test-rules.cjs",
     "android:build": "cd android && ./gradlew assembleDebug",
-    "format": "prettier --write \"src/**/*.{ts,tsx}\" \"__tests__/**/*.{ts,tsx}\" \"*.js\" \"*.json\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx}\" \"__tests__/**/*.{ts,tsx}\" \"*.js\" \"*.json\""
+    "format": "prettier --write \"src/**/*.{ts,tsx}\" \"__tests__/**/*.{ts,tsx}\" \"tools/eslint/**/*.{js,cjs}\" \"*.js\" \"*.json\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx}\" \"__tests__/**/*.{ts,tsx}\" \"tools/eslint/**/*.{js,cjs}\" \"*.js\" \"*.json\""
   },
   "dependencies": {
     "@react-navigation/native": "^7.5.1",
@@ -38,6 +40,7 @@
     "@types/jest": "^29.5.13",
     "@types/react": "^19.2.0",
     "@types/react-test-renderer": "^19.1.0",
+    "@typescript-eslint/parser": "^8.72.2",
     "eslint": "^8.19.0",
     "jest": "^29.6.3",
     "prettier": "2.8.8",

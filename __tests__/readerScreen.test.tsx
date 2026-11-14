@@ -47,6 +47,28 @@ describe('ReaderScreen', () => {
     expect(goBack).toHaveBeenCalledTimes(1);
   });
 
+  it('renders pressed feedback on the back control', () => {
+    renderReaderScreen();
+    const back = screen.getByTestId('reader-back');
+
+    fireEvent(back, 'responderGrant', {
+      persist: () => {},
+      nativeEvent: {
+        touches: [],
+        changedTouches: [],
+        identifier: 0,
+        locationX: 0,
+        locationY: 0,
+        pageX: 0,
+        pageY: 0,
+        timestamp: 1,
+        target: 1,
+      },
+    });
+
+    expect(screen.getByTestId('reader-back')).toHaveStyle({ opacity: 0.6 });
+  });
+
   it('shows the error state for an unknown image key', () => {
     renderReaderScreen('not_a_real_key');
 
