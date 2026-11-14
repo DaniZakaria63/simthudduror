@@ -84,7 +84,12 @@
     "continuousSynchronization": false
   },
   "delivery": {
-    "status": "pending-normal-push"
+    "status": "pushed",
+    "branch": "feat/init-foundation",
+    "remote": "origin",
+    "commit": "827f4236fb074850724c17a904cf3f45e550db80",
+    "pushedAt": "2026-11-14T08:29:58Z",
+    "note": "Normal non-force push created the remote branch; no force-push was used."
   },
   "limits": [
     "Native Android/iOS/device execution not required or rerun for unchanged app/hosts.",

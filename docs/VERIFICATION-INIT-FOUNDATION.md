@@ -108,7 +108,7 @@ The provider continues developing independently; this dated extraction is not co
 - Live multi-touch delivery was not re-run on a device in this task. Jest drives
   the real handlers and transforms, but native touch dispatch remains a device
   concern.
-- Principal independent checks/review are recorded in the [acceptance journal](../.agents/journal/2026-11-14-init-acceptance.md) and [machine evidence](evidence/init-principal-checks.json). Normal origin push is recorded after successful delivery.
+- Principal independent checks/review are recorded in the [acceptance journal](../.agents/journal/2026-11-14-init-acceptance.md) and [machine evidence](evidence/init-principal-checks.json). The branch was pushed normally to `origin` as commit `827f423`; no force-push was used.
 - Keep this worktree until the human confirms the branch is merged.
 
 ## Reproduce

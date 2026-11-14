@@ -49,11 +49,11 @@ This plan is an acceptance checklist, not a claim that implementation has passed
 
 ## Implementation and acceptance evidence
 
-Implementation and independent review are complete; normal origin push is the remaining delivery step at this entry. The source prompt remains verbatim. [Initialization verification](../VERIFICATION-INIT-FOUNDATION.md), [principal check evidence](../evidence/init-principal-checks.json), and the [acceptance journal](../../.agents/journal/2026-11-14-init-acceptance.md) map requirements to observed results.
+Implementation, independent review and the normal origin push are complete. The source prompt remains verbatim. [Initialization verification](../VERIFICATION-INIT-FOUNDATION.md), [principal check evidence](../evidence/init-principal-checks.json), and the [acceptance journal](../../.agents/journal/2026-11-14-init-acceptance.md) map requirements to observed results.
 
 - Feature boundaries are enabled in normal lint and exercised by 17 valid/22 invalid fixtures, including aliases, normalized paths, re-exports, literal dynamic imports/requires and TypeScript import-equals.
 - All 15 source modules are represented in coverage. Normal/CI Jest each pass 7 suites/102 tests; statements 99.58%, branches 91.86%, functions 100%, lines 99.57%, above the 81% gate. Typecheck, lint, focused rules and formatting pass.
 - `src`, `android` and `ios` are unchanged from `06e697f`. Native/device builds are not claimed for this tooling/docs/test task.
 - Agent/developer rules, prompt-to-plan naming and journaling are documented and committed; all requested references and model/advisory evidence are recorded.
 - API documentation covers all source-declared routes and referenced data contracts in its timestamped provider snapshot; later live-provider work is outside that snapshot and requires future re-extraction. No network client or backend edit was introduced.
-- Work uses `feat/init-foundation` in its dedicated worktree, with scoped `foundation:`/`testing:` commits. Retain the worktree until human merge confirmation. Final push evidence is recorded after the operation succeeds.
+- Work uses `feat/init-foundation` in its dedicated worktree, with scoped `foundation:`/`testing:` commits. Retain the worktree until human merge confirmation. The branch was pushed normally to `origin` as commit `827f423`; no force-push was used.
