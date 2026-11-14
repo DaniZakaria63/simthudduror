@@ -13,8 +13,8 @@
     "test:coverage": "jest --coverage --runInBand",
     "test:rules": "node tools/eslint/test-rules.cjs",
     "android:build": "cd android && ./gradlew assembleDebug",
-    "format": "prettier --write \"src/**/*.{ts,tsx}\" \"__tests__/**/*.{ts,tsx}\" \"tools/eslint/**/*.{js,cjs}\" \"*.js\" \"*.json\"",
-    "format:check": "prettier --check \"src/**/*.{ts,tsx}\" \"__tests__/**/*.{ts,tsx}\" \"tools/eslint/**/*.{js,cjs}\" \"*.js\" \"*.json\""
+    "format": "prettier --write \"src/**/*.{ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"tools/eslint/**/*.{js,cjs}\" \"*.js\" \"*.json\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"tools/eslint/**/*.{js,cjs}\" \"*.js\" \"*.json\""
   },
   "dependencies": {
     "@react-navigation/native": "^7.5.1",
