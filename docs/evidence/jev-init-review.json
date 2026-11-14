@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "capturedAt": "2026-11-14T07:15:32.609Z",
+  "endpoint": "https://api.typesafe.ai/v1/systemone",
+  "apiKeySource": "env",
+  "request": {
+    "model": "jev-latest",
+    "stateSha256": "a9ff2b23c603b363b673d751e1ee6a17c75737a78b9606beb91510b5474f6c10",
+    "stateExcerpt": "{\"project\":\"simthudduror\",\"task\":\"Final review of complete init.prompt.txt implementation before normal origin push.\",\"scope\":\"Dedicated feat/init-foundation worktree; preserved two-screen source/native hosts; documentation workflow, journals, API extraction, full-source coverage and executable feature isolation.\",\"evidence\":{\"principalChecks\":{\"typecheck\":0,\"lint\":0,\"formatCheck\":0,\"testRules\":\"17 valid/22 invalid fixtures passed\",\"normalAndCiJest\":\"7 suites/102 tests each passed\",\"coverage\":{\"statements\":99.58,\"branches\":91.86,\"functions\":100,\"lines\":99.57}},\"sourceUnchanged\":\"src/android/ios identical to06e697f\",\"worker\":\"Completed scoped commits and journal; verified actual Deepseek high metadata after execution.\",\"research\":\"All three prompt references read, primary links checked, att…",
+    "questions": {
+      "route": {
+        "type": "choice",
+        "instructions": "Which kind of next step should the Codex principal consider for this task? Choose exactly one.",
+        "criteria": {
+          "implementation": "A single implementation worker should make a scoped change in the app repository. Only that worker may edit app code.",
+          "research": "External documentation, web research, or CLI behavior must be gathered first. Research never edits app code.",
+          "review": "An existing implementation or plan needs independent review before acceptance. Review never edits app code.",
+          "codex_decision": "The principal must decide, clarify scope, or escalate; do not delegate yet."
+        }
+      },
+      "research_needed": {
+        "type": "noul",
+        "instructions": "Does this task require new external evidence, such as live documentation or observed CLI behavior, before the principal can safely decide?",
+        "criteria": {
+          "true": "New external evidence is required before a safe decision.",
+          "false": "The available repository evidence is enough for the next step."
+        }
+      },
+      "evidence_sufficient": {
+        "type": "noul",
+        "instructions": "Is the evidence in the supplied state sufficient and unambiguous for a safe next step without further clarification?",
+        "criteria": {
+          "true": "The evidence is sufficient and unambiguous for a safe next step.",
+          "false": "Evidence is missing, contradictory, or too ambiguous to proceed without principal review."
+        }
+      },
+      "review_risk": {
+        "type": "score",
+        "instructions": "How much review risk does the proposed next step carry, considering app behavior, secrets, shared configuration, and reversibility?",
+        "criteria": [
+          "Low: docs or tooling only, no app behavior change and no shared configuration.",
+          "Moderate: implementation may touch app behavior, tests, or project configuration.",
+          "High: security, secrets, data loss, global configuration, or an unclear rollback path."
+        ]
+      }
+    }
+  },
+  "result": {
+    "status": "ok",
+    "escalate": true,
+    "advisory": {
+      "route": {
+        "type": "choice",
+        "choice": "review",
+        "confidence": 0.77,
+        "probabilities": {
+          "implementation": 0,
+          "research": 0,
+          "review": 0.83,
+          "codex_decision": 0.17
+        },
+        "probability": 0.83
+      },
+      "researchNeeded": {
+        "type": "noul",
+        "noul": 0.26
+      },
+      "evidenceSufficient": {
+        "type": "noul",
+        "noul": 0.33
+      },
+      "reviewRisk": {
+        "type": "score",
+        "score": 0.24,
+        "confidence": 0.66,
+        "probabilities": {
+          "0": 0.79,
+          "1": 0.19,
+          "2": 0.02
+        },
+        "legend": {
+          "0": "Low: docs or tooling only, no app behavior change and no shared configuration.",
+          "1": "Moderate: implementation may touch app behavior, tests, or project configuration.",
+          "2": "High: security, secrets, data loss, global configuration, or an unclear rollback path."
+        }
+      },
+      "editsApp": false,
+      "researchMayEditApp": false,
+      "authorization": "none",
+      "requiresCodexDecision": true,
+      "confidenceIsPermission": false,
+      "commands": [],
+      "note": "Advisory only. Codex decides. Confidence is not permission. No model-provided command is executed."
+    },
+    "escalationReasons": [
+      "evidence_sufficient 0.33 is below 0.7"
+    ],
+    "reason": null,
+    "error": null,
+    "validationErrors": null,
+    "requiresCodexDecision": true,
+    "authorization": "none"
+  },
+  "response": {
+    "model": "jev-1.14.0",
+    "answers": {
+      "route": {
+        "type": "choice",
+        "choice": "review",
+        "confidence": 0.77,
+        "probabilities": {
+          "implementation": 0,
+          "research": 0,
+          "review": 0.83,
+          "codex_decision": 0.17
+        }
+      },
+      "research_needed": {
+        "type": "noul",
+        "noul": 0.26
+      },
+      "evidence_sufficient": {
+        "type": "noul",
+        "noul": 0.33
+      },
+      "review_risk": {
+        "type": "score",
+        "score": 0.24,
+        "confidence": 0.66,
+        "legend": {
+          "0": "Low: docs or tooling only, no app behavior change and no shared configuration.",
+          "1": "Moderate: implementation may touch app behavior, tests, or project configuration.",
+          "2": "High: security, secrets, data loss, global configuration, or an unclear rollback path."
+        },
+        "probabilities": {
+          "0": 0.79,
+          "1": 0.19,
+          "2": 0.02
+        }
+      }
+    },
+    "usage": {
+      "input_tokens": 1107,
+      "output_tokens": 104
+    }
+  }
+}

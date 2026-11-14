@@ -95,21 +95,9 @@ feature failed with exit 1 and the expected message, then was removed.
 
 ## API source status
 
-The only provider is documented in [docs/api](api/README.md). At the principal's
-recorded observation it contained eight instruction/planning/research files and
-zero implemented endpoint contracts; proposed research endpoints and Post/User
-names are recorded separately from wire contracts, with authentication,
-payloads, schemas, statuses, pagination and base URLs explicitly unknown.
+The sole provider is documented in [docs/api](api/README.md). It evolved during this task from planning files into account/post adapters. The principal reviewed a bounded source snapshot captured **2026-11-14 07:20:31 UTC**, fingerprinted all **59** included files, and verified exact agreement between all **8** declared route registrations and the documented endpoint set. Referenced JSON types, required/optional fields, validators, cookie/bearer/CSRF behavior, status/error envelopes, feed limits and remaining unknowns are extracted into the inventory.
 
-During final verification the provider changed while keeping the same Git HEAD
-`1a4c44a`: it grew well beyond the eight fingerprinted files to include
-additional journals, raw research extracts, image assets and credits, and
-modified planning/research files. The drift check embedded in the API README
-therefore fails; the exact file count is a moving target because the provider is
-being developed concurrently. The added material contained no implemented
-handler, route registration or serialized schema. The principal owns `docs/api`
-and will re-extract/revalidate before acceptance. No endpoint was invented or
-used by the app.
+The provider continues developing independently; this dated extraction is not continuous synchronization or evidence of deployed/runtime behavior. The documented live freshness check intentionally fails after source changes and must be used before future integration. Raw third-party examples are not provider endpoints. The source issue where GET session omits account creation time is documented rather than silently corrected in another project. No provider code was executed or modified. No mobile API integration was added.
 
 ## Behavior preservation and limitations
 
@@ -120,7 +108,7 @@ used by the app.
 - Live multi-touch delivery was not re-run on a device in this task. Jest drives
   the real handlers and transforms, but native touch dispatch remains a device
   concern.
-- Principal review, acceptance and the normal push to `origin` are pending.
+- Principal independent checks/review are recorded in the [acceptance journal](../.agents/journal/2026-11-14-init-acceptance.md) and [machine evidence](evidence/init-principal-checks.json). Normal origin push is recorded after successful delivery.
 - Keep this worktree until the human confirms the branch is merged.
 
 ## Reproduce

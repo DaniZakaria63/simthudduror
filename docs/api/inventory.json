@@ -1,29 +1,46 @@
 {
   "schemaVersion": 1,
-  "observedAt": "2026-11-14T06:57:38.230872+00:00",
+  "observedAt": "2026-11-14T07:20:31.260170+00:00",
   "provider": {
     "path": "/home/dani/WebstormProjects/maulid.id",
     "gitHead": "1a4c44a7a10249d963cc65655367781abff5e9e2",
     "includesUncommittedFiles": true,
     "readOnly": true
   },
-  "status": "planning-only-no-implemented-contracts",
-  "scope": "All eight non-Git files at this observation are instructions, plans, research, journals or design metadata. Research proposes two endpoints and domain models; no application scaffold, handler, schema or implemented wire contract exists.",
+  "status": "eight-account-and-post-routes-defined-runtime-unverified",
+  "scope": "All account/post route declarations from the dated bounded source snapshot; complete server composition/deployment unverified. Later provider changes require re-extraction.",
   "inspection": {
     "excludedDirectories": [
-      ".git"
+      ".cache",
+      ".git",
+      "build",
+      "coverage",
+      "dist",
+      "node_modules",
+      "vendor"
     ],
-    "method": "Enumerated and fingerprinted every non-Git file; read instructions, prompt, architecture plan, design plan and journal; searched all text files for HTTP methods, API paths, endpoint and schema definitions. Design metadata is not an API contract.",
+    "excludedPrivateFiles": [
+      ".env",
+      ".env.*",
+      "*.pem",
+      "*.key"
+    ],
+    "method": "Captured all non-generated/non-private files during bounded observation. Reviewed application source and relevant tests; searched every captured production Go file for route registrations and JSON tags. Account and post adapters are the only registering sources. Extracted all eight method/path pairs and referenced types/validators/helpers. External research examples are not endpoints. No provider code was executed or modified.",
     "sourceFiles": [
       {
         "path": ".agents/journal/2026-11-14-initial.md",
-        "bytes": 3481,
-        "sha256": "ab119e4fc43a1b780eed76fcc102e39c565f51cb5a5584a180c19604d3cc1a04"
+        "bytes": 6600,
+        "sha256": "262fb3ddca514c881eace5b2c7a18287e65a60cf378c41a1e333e5e9b07b6f11"
+      },
+      {
+        "path": ".agents/journal/2026-11-14-principal-review.md",
+        "bytes": 10999,
+        "sha256": "7b82ab288d30cfebc0e2c76777ff4050ce4eebe1f795ca8d11cf544af2b1b5d8"
       },
       {
         "path": ".agents/journal/2026-11-14-research.md",
-        "bytes": 1502,
-        "sha256": "f8ade04074c8a58db80e601b6ae1e6c5737515fe6da91595179737b86112a614"
+        "bytes": 2608,
+        "sha256": "043af69d54d30e5abf2d5f7c8a784692f026092e0870e53bd47a62375f77a4cf"
       },
       {
         "path": ".taste-skill/direction.json",
@@ -36,14 +53,39 @@
         "sha256": "5de02585b12ea5febdd5e2d1b96a8690997811e53e9281b282476543c65f8b8e"
       },
       {
+        "path": "assets/credits.json",
+        "bytes": 3624,
+        "sha256": "61ed7cfc62c8e26ceccea3254626b602ab379d0ebf2d810a59c1a3af5df18019"
+      },
+      {
+        "path": "assets/masjid-baiturrahman-aceh.jpg",
+        "bytes": 692470,
+        "sha256": "18be1fe37655e1df89d259fe48e6087c14cea0b4c031cd7086301c09cd54c699"
+      },
+      {
+        "path": "assets/masjid-istiqlal-jakarta.jpg",
+        "bytes": 587998,
+        "sha256": "633e878bb1a790d5f01b8f563f5ca8310c0d385b941d791f340766b653222a45"
+      },
+      {
+        "path": "assets/masjid-menara-kudus.jpg",
+        "bytes": 352223,
+        "sha256": "f93a29b5aa1ed3de0ab0ac4e044994e2d1326ecf34c4e83169066b64cf49dc85"
+      },
+      {
+        "path": "assets/peringatan-maulid-nabi-2022-di-masjid-nurul.jpg",
+        "bytes": 700495,
+        "sha256": "1c7f12ac43e048223d6085501ff99600d2984243beb979d39fe802d86c1bbf7a"
+      },
+      {
         "path": "docs/plans/initial.design.md",
         "bytes": 5342,
         "sha256": "cc8e72fdc107f16415ec2cb719c6d8dace8433dd6a12388fa9d7363514e9b2bf"
       },
       {
         "path": "docs/plans/initial.plan.md",
-        "bytes": 10928,
-        "sha256": "ddea60cf02ae76f5a8e891b68f7822ed12053be2cd66e28bceb81de78642adf7"
+        "bytes": 13629,
+        "sha256": "c11ea243fdd28f52236a7a7b5ed046936792a4560eb839e165f8f897e30de0ef"
       },
       {
         "path": "docs/plans/initial.prompt.txt",
@@ -51,9 +93,234 @@
         "sha256": "4c546e56fb1694d4bf83ee644d0b92866bc30947d01336f0fd86c28c73ceb1be"
       },
       {
+        "path": "docs/research/image-provenance.json",
+        "bytes": 3624,
+        "sha256": "61ed7cfc62c8e26ceccea3254626b602ab379d0ebf2d810a59c1a3af5df18019"
+      },
+      {
         "path": "docs/research/initial.sources.md",
-        "bytes": 12888,
-        "sha256": "fafce2839b01a9b2bf2441557d87c1caeb3c54dab4b6865a5d3c46354648adb7"
+        "bytes": 14487,
+        "sha256": "d737a13d3796f99cb75f5852039d5526666071e99428f71dbf0b396674e6bba4"
+      },
+      {
+        "path": "docs/research/raw/cloudflare_skill.md",
+        "bytes": 22026,
+        "sha256": "5e3e96a1e438d8f35fef0a1e38f02d4f00e2bdf910401b7dfe00e6779c6dac85"
+      },
+      {
+        "path": "docs/research/raw/leapcell_clean_arch.html",
+        "bytes": 182598,
+        "sha256": "944219bbce76c625cfad4eb33503fdc74e66cf88f52c42c433f59c23fcfc28fb"
+      },
+      {
+        "path": "docs/research/raw/mcpmarket_idiomatic_go.html",
+        "bytes": 148030,
+        "sha256": "c588932c6bb3bd3d838f6a9a3613206ae9993e6a2435d6a0d8152dfe889456d2"
+      },
+      {
+        "path": "docs/research/raw/reintech_go_clean_arch.html",
+        "bytes": 50726,
+        "sha256": "5cc2b35cb6847543f38b19cfeb71da6b4c46052dbf410ac7c8aacf80b8091853"
+      },
+      {
+        "path": "docs/research/raw/typesafe_coding_agents.md",
+        "bytes": 4428,
+        "sha256": "3b01cfdbf37fcb288bea2757dcf39581fbc3e03101476d8cb90af06f44f6c3e5"
+      },
+      {
+        "path": "docs/research/raw/typesafe_confidence.md",
+        "bytes": 14159,
+        "sha256": "3f15502effc8da348b7e5cf395632a9e7971c7cad91660f56995a9c6beb90ee3"
+      },
+      {
+        "path": "docs/research/raw/typesafe_llms.txt",
+        "bytes": 21897,
+        "sha256": "72eb4022ce081493b7a4a077328a2a8ce7bbaacbfd71b5a84cf52b962ce2fe0d"
+      },
+      {
+        "path": "go.mod",
+        "bytes": 807,
+        "sha256": "147c9cecef34ee4775de65d07efd129ae64c9e53a66cc5f39109c1feff0cf703"
+      },
+      {
+        "path": "go.sum",
+        "bytes": 5723,
+        "sha256": "fd49040f011383e4e4659e10e098e18447ae71fc8eed43618bd5acf434baef88"
+      },
+      {
+        "path": "internal/account/account.go",
+        "bytes": 2838,
+        "sha256": "127581d6695b181037709feb8d2bdd385c6d31e5daf5534d4dbb0438c858c301"
+      },
+      {
+        "path": "internal/account/credential.go",
+        "bytes": 423,
+        "sha256": "b759028f0a78cff72d20db61a17330c28cd27421d4b2ffa77fe687f46881ac0a"
+      },
+      {
+        "path": "internal/account/helpers_test.go",
+        "bytes": 656,
+        "sha256": "c8005839ef3ba02044bae33283bd575e15c7ea97e45ce2da15a68e09f8ad2a5c"
+      },
+      {
+        "path": "internal/account/http.go",
+        "bytes": 5853,
+        "sha256": "7f5ccc0bf720dcdd27045d044029cdd3c9995b5cbcf5a3295bcb9d7d92872dd8"
+      },
+      {
+        "path": "internal/account/http_test.go",
+        "bytes": 9460,
+        "sha256": "8dc2025e732e230f9043eb4f29f171ed96d5681919ac615d2599a3ad74c703c5"
+      },
+      {
+        "path": "internal/account/password.go",
+        "bytes": 2055,
+        "sha256": "3d0e89f90e3233c9a62739288bc26a1c5930f31f6f4f308064413950e4753688"
+      },
+      {
+        "path": "internal/account/repository.go",
+        "bytes": 679,
+        "sha256": "d14b0c2955b470599572ae05ba06c4451a089af7d23c0d859ca8458ec3365f47"
+      },
+      {
+        "path": "internal/account/repository_sqlite.go",
+        "bytes": 6345,
+        "sha256": "c606f5617deba6fec9e475c61612fd089975bc6e2769bef67b1cfc4ab960408a"
+      },
+      {
+        "path": "internal/account/repository_test.go",
+        "bytes": 4634,
+        "sha256": "f415d5be3036b9c01ebd163bc5aa02d5acc0913cc733a80aad37a0299800df36"
+      },
+      {
+        "path": "internal/account/service.go",
+        "bytes": 6785,
+        "sha256": "e0d470f9dfba351bddb20c3c1a3df89745e0e2362d60e12026f31f2043abe607"
+      },
+      {
+        "path": "internal/account/service_test.go",
+        "bytes": 6670,
+        "sha256": "535234538e07f8238e465c9f8b4dee7ca0a215d40761274677736888d4528789"
+      },
+      {
+        "path": "internal/platform/authn/authn.go",
+        "bytes": 5136,
+        "sha256": "bbe7d94d104f1b3518a87e3f41e2520b067bace4bc90577aa79cff32f7113793"
+      },
+      {
+        "path": "internal/platform/authn/authn_test.go",
+        "bytes": 5741,
+        "sha256": "6007d7607a4830bcfd33ca02f78513ca23003c911b1ea570045aebb1b3c8e663"
+      },
+      {
+        "path": "internal/platform/config/config.go",
+        "bytes": 3830,
+        "sha256": "15cfd37a116581cacecbdc54c19bf71a6336c3387e8df4aa10090db9b51cc7df"
+      },
+      {
+        "path": "internal/platform/config/config_test.go",
+        "bytes": 2202,
+        "sha256": "2347dd1a66a7d88655399ea3fa42b4e6b334162b264958c7d2c968bad2f9616d"
+      },
+      {
+        "path": "internal/platform/database/database.go",
+        "bytes": 2029,
+        "sha256": "bb36db381e62b7dae2f5541e64371413cc26889a30ce85818dd99fc9fbf7c27e"
+      },
+      {
+        "path": "internal/platform/database/database_test.go",
+        "bytes": 1452,
+        "sha256": "47b9793eff8d3bc334d85514709724bbf63a43b440c3f1bf121ff0f28f345a01"
+      },
+      {
+        "path": "internal/platform/database/schema.go",
+        "bytes": 1555,
+        "sha256": "ee93dea1bc23e0dee4d175e41e2f6113c3886f8f8686bd5450545562c5c8f299"
+      },
+      {
+        "path": "internal/platform/httpx/httpx.go",
+        "bytes": 6631,
+        "sha256": "b08a49804599d55ec6281ade852aeb26ae5f031872d2580bcd86d9240fdfd7e8"
+      },
+      {
+        "path": "internal/platform/httpx/httpx_test.go",
+        "bytes": 5975,
+        "sha256": "f78fda5c4f6769491aec384ba2473c8b2e0cd78dceba2cb7e54014022997a380"
+      },
+      {
+        "path": "internal/platform/ratelimit/ratelimit.go",
+        "bytes": 2354,
+        "sha256": "fc842efd792ce0d854adddb8dc3002716ef69e33fb0db15c8ec7a1633e5d429d"
+      },
+      {
+        "path": "internal/platform/ratelimit/ratelimit_test.go",
+        "bytes": 1298,
+        "sha256": "50fbfc42f29f8c03cad5b43364562ca83ba68dd9da565c16d296b24429aa1c90"
+      },
+      {
+        "path": "internal/post/http.go",
+        "bytes": 3632,
+        "sha256": "dfee658649b7a3129f881fc2019e76f2838e7ce725a5d6f993a060c1c2db0e07"
+      },
+      {
+        "path": "internal/post/post.go",
+        "bytes": 4370,
+        "sha256": "7d7c5feb6031e8cc7f0fe17438ff94218334646f3605e42269228cddaee9d0b0"
+      },
+      {
+        "path": "internal/post/repository_sqlite.go",
+        "bytes": 3442,
+        "sha256": "a49054b26ca4e45f292488921c32416b528da2f531dd07bd81eea1c41d4f089e"
+      },
+      {
+        "path": "internal/post/util.go",
+        "bytes": 492,
+        "sha256": "817f582ad4a97a92ddc65b6b2ac0539f918d45782a5ba0b5d11746b0cf03372c"
+      },
+      {
+        "path": "web/public/images/credits.json",
+        "bytes": 3624,
+        "sha256": "61ed7cfc62c8e26ceccea3254626b602ab379d0ebf2d810a59c1a3af5df18019"
+      },
+      {
+        "path": "web/public/images/masjid-baiturrahman-aceh.jpg",
+        "bytes": 692470,
+        "sha256": "18be1fe37655e1df89d259fe48e6087c14cea0b4c031cd7086301c09cd54c699"
+      },
+      {
+        "path": "web/public/images/masjid-baiturrahman-aceh.webp",
+        "bytes": 344942,
+        "sha256": "1f59155d16739c41a0ed87f34b0465414d6f72d49f33cfde0e7cde970e53bd0f"
+      },
+      {
+        "path": "web/public/images/masjid-istiqlal-jakarta.jpg",
+        "bytes": 587998,
+        "sha256": "633e878bb1a790d5f01b8f563f5ca8310c0d385b941d791f340766b653222a45"
+      },
+      {
+        "path": "web/public/images/masjid-istiqlal-jakarta.webp",
+        "bytes": 173976,
+        "sha256": "3fcaa65700d947d033e9d12e22fd0261ea6a4e788c6e4820efc96670901b5403"
+      },
+      {
+        "path": "web/public/images/masjid-menara-kudus.jpg",
+        "bytes": 352223,
+        "sha256": "f93a29b5aa1ed3de0ab0ac4e044994e2d1326ecf34c4e83169066b64cf49dc85"
+      },
+      {
+        "path": "web/public/images/masjid-menara-kudus.webp",
+        "bytes": 128194,
+        "sha256": "c2b319a64de19b8d090c38ac4c0133b8ee8e104d7c29386f8df120a05e68ef52"
+      },
+      {
+        "path": "web/public/images/peringatan-maulid-nabi-2022-di-masjid-nurul.jpg",
+        "bytes": 700495,
+        "sha256": "1c7f12ac43e048223d6085501ff99600d2984243beb979d39fe802d86c1bbf7a"
+      },
+      {
+        "path": "web/public/images/peringatan-maulid-nabi-2022-di-masjid-nurul.webp",
+        "bytes": 306260,
+        "sha256": "5b0d774646e346e6e34d3e6d3117ed1b1e7274f600161a6b39ee430dcc09be18"
       }
     ]
   },
@@ -61,69 +328,553 @@
     {
       "source": "docs/plans/initial.plan.md",
       "section": "Required behavior, item 1",
+      "kind": "planned-api-prefix",
       "value": "/api/v1",
-      "kind": "proposed-api-prefix",
-      "contractStatus": "planning-only; no HTTP method, endpoint resource, payload or response is specified"
+      "contractStatus": "No registered method/resource path exists in this snapshot."
     },
     {
-      "source": "AGENTS.md",
-      "section": "Domain rules",
-      "value": "Only validated users may create posts; other accounts may interact.",
-      "kind": "domain-policy",
-      "contractStatus": "No authentication mechanism, validation field wire schema or endpoint is defined."
-    },
-    {
-      "source": "docs/research/initial.sources.md",
-      "section": "6. Minimal Vertical Slice Recommendation",
-      "kind": "proposed-endpoint",
-      "method": "GET",
-      "path": "/api/v1/posts",
-      "contractStatus": "Research recommendation only; no implemented handler, auth, request/response serialization or status contract."
-    },
-    {
-      "source": "docs/research/initial.sources.md",
-      "section": "6. Minimal Vertical Slice Recommendation",
-      "kind": "proposed-endpoint",
-      "method": "POST",
-      "path": "/api/v1/posts",
-      "contractStatus": "Research recommendation only; validated author proposed, with no implemented validation/auth/wire contract."
-    },
-    {
-      "source": "docs/research/initial.sources.md",
-      "section": "6. Minimal Vertical Slice Recommendation",
-      "kind": "proposed-domain-models",
-      "models": {
-        "Post": [
-          "ID",
-          "Title",
-          "Description",
-          "EventDate",
-          "Location",
-          "AuthorID",
-          "CreatedAt"
-        ],
-        "User": [
-          "ID",
-          "Name",
-          "Role",
-          "IsValidated"
-        ]
-      },
-      "contractStatus": "Proposed domain names; field types, JSON names, required/null rules, enum vocabulary and endpoint placement are undefined."
+      "source": "docs/plans/initial.plan.md",
+      "section": "Approved implementation decisions",
+      "kind": "planned-auth-architecture",
+      "browser": "HTTP-only cookies with explicit CSRF",
+      "mobile": "opaque bearer credentials",
+      "contractStatus": "Helper/service implementation exists; issuance/revocation HTTP paths, response payloads and cookie attributes are not defined yet."
     }
   ],
-  "endpointContracts": [],
+  "endpointContracts": [
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/register",
+      "source": "internal/account/http.go: RegisterRoutes, register, writeSession",
+      "authentication": "public; SameOrigin and register-scoped direct-client-IP rate guard",
+      "pathParams": [],
+      "queryParams": [],
+      "request": {
+        "contentType": "application/json",
+        "schema": "requestSchemas.register",
+        "maxBodyBytes": 32768,
+        "optionalHeaders": {
+          "X-Maulid-Client": "mobile to include raw opaque token in response"
+        }
+      },
+      "success": {
+        "status": 201,
+        "schema": "account.sessionResponse",
+        "sideEffects": "Create unvalidated member and session; set session cookie for all clients."
+      },
+      "errors": [
+        {
+          "status": 400,
+          "code": "invalid_json"
+        },
+        {
+          "status": 413,
+          "code": "body_too_large"
+        },
+        {
+          "status": 415,
+          "code": "unsupported_media_type"
+        },
+        {
+          "status": 500,
+          "code": "internal_error"
+        },
+        {
+          "status": 403,
+          "code": "origin_invalid"
+        },
+        {
+          "status": 429,
+          "code": "rate_limited",
+          "header": "Retry-After: integer seconds = floor(remaining seconds)+1"
+        },
+        {
+          "status": 400,
+          "code": "invalid_input"
+        },
+        {
+          "status": 409,
+          "code": "email_unavailable"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/login",
+      "source": "internal/account/http.go: RegisterRoutes, login, writeSession",
+      "authentication": "public; SameOrigin and login-scoped direct-client-IP rate guard",
+      "pathParams": [],
+      "queryParams": [],
+      "request": {
+        "contentType": "application/json",
+        "schema": "requestSchemas.login",
+        "maxBodyBytes": 32768,
+        "optionalHeaders": {
+          "X-Maulid-Client": "mobile to include raw opaque token in response"
+        }
+      },
+      "success": {
+        "status": 200,
+        "schema": "account.sessionResponse",
+        "sideEffects": "Create session; set session cookie; reset login-scoped rate counter on success."
+      },
+      "errors": [
+        {
+          "status": 400,
+          "code": "invalid_json"
+        },
+        {
+          "status": 413,
+          "code": "body_too_large"
+        },
+        {
+          "status": 415,
+          "code": "unsupported_media_type"
+        },
+        {
+          "status": 500,
+          "code": "internal_error"
+        },
+        {
+          "status": 403,
+          "code": "origin_invalid"
+        },
+        {
+          "status": 429,
+          "code": "rate_limited",
+          "header": "Retry-After: integer seconds = floor(remaining seconds)+1"
+        },
+        {
+          "status": 401,
+          "code": "invalid_credentials"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/auth/logout",
+      "source": "internal/account/http.go: RegisterRoutes, logout, clearCookie; authn.go: Require",
+      "authentication": "Require middleware: valid bearer or session cookie; cookie writes require X-CSRF-Token",
+      "pathParams": [],
+      "queryParams": [],
+      "request": {
+        "body": "not decoded; no JSON payload required"
+      },
+      "success": {
+        "status": 204,
+        "body": null,
+        "sideEffects": "Revoke current credential; clear session cookie with empty value and MaxAge=-1."
+      },
+      "errors": [
+        {
+          "status": 401,
+          "code": "unauthenticated"
+        },
+        {
+          "status": 403,
+          "code": "csrf_invalid"
+        },
+        {
+          "status": 500,
+          "code": "internal_error"
+        }
+      ],
+      "repeatBehavior": "Service logout is idempotent; a repeated HTTP call with revoked credentials may fail Require with 401."
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/auth/session",
+      "source": "internal/account/http.go: RegisterRoutes, session; authn.go: Optional",
+      "authentication": "Optional resolves a valid principal; handler itself returns 401 when absent",
+      "pathParams": [],
+      "queryParams": [],
+      "request": {
+        "body": "not decoded"
+      },
+      "success": {
+        "status": 200,
+        "schema": "account.sessionResponse",
+        "tokenField": "always omitted here, including with X-Maulid-Client mobile",
+        "accountCreatedAt": "Captured handler does not populate View.CreatedAt; Go zero time serializes. See discrepancy."
+      },
+      "errors": [
+        {
+          "status": 401,
+          "code": "unauthenticated"
+        }
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/posts",
+      "source": "internal/post/http.go: RegisterRoutes/list; post.go: List; repository_sqlite.go: List",
+      "authentication": "public, Optional viewer affects liked_by_me",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "q",
+          "type": "string",
+          "required": false,
+          "validation": "trimmed; max100 Unicode runes; literal body substring, SQL LIKE wildcards escaped"
+        },
+        {
+          "name": "limit",
+          "type": "integer string",
+          "required": false,
+          "default": 30,
+          "minimum": 1,
+          "maximum": 100
+        }
+      ],
+      "success": {
+        "status": 200,
+        "body": {
+          "posts": "post.Post[], empty [] when no results"
+        },
+        "order": "created_at DESC, id DESC",
+        "viewer": "liked_by_me false for anonymous"
+      },
+      "errors": [
+        {
+          "status": 400,
+          "code": "invalid_limit"
+        },
+        {
+          "status": 400,
+          "code": "invalid_input",
+          "when": "q too long"
+        },
+        {
+          "status": 500,
+          "code": "internal_error"
+        }
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/posts",
+      "source": "internal/post/http.go: RegisterRoutes/create; post.go: Create",
+      "authentication": "Require; trusted current validation_status=validated; cookie writes require CSRF",
+      "pathParams": [],
+      "queryParams": [],
+      "request": {
+        "contentType": "application/json",
+        "schema": "requestSchemas.createPost",
+        "maxBodyBytes": 32768
+      },
+      "success": {
+        "status": 201,
+        "body": {
+          "post": "post.Post"
+        }
+      },
+      "errors": [
+        {
+          "status": 401,
+          "code": "unauthenticated"
+        },
+        {
+          "status": 403,
+          "code": "csrf_invalid"
+        },
+        {
+          "status": 500,
+          "code": "internal_error"
+        },
+        {
+          "status": 403,
+          "code": "validation_required"
+        },
+        {
+          "status": 400,
+          "code": "invalid_input"
+        },
+        {
+          "status": 400,
+          "code": "invalid_json"
+        },
+        {
+          "status": 413,
+          "code": "body_too_large"
+        },
+        {
+          "status": 415,
+          "code": "unsupported_media_type"
+        },
+        {
+          "status": 404,
+          "code": "post_not_found",
+          "when": "repository cannot read created post"
+        }
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/posts/{id}/like",
+      "source": "internal/post/http.go: RegisterRoutes/interact; post.go: Like; repository_sqlite.go",
+      "authentication": "Any authenticated account, including unvalidated; cookie writes require CSRF",
+      "pathParams": [
+        {
+          "name": "id",
+          "type": "string",
+          "validation": "trimmed opaque post identity; nonexistent ->404"
+        }
+      ],
+      "queryParams": [],
+      "request": {
+        "body": "not decoded; no JSON body required"
+      },
+      "success": {
+        "status": 200,
+        "body": {
+          "post": "post.Post"
+        },
+        "idempotency": "Repeated operation preserves this account membership; other concurrent likes may change count."
+      },
+      "errors": [
+        {
+          "status": 401,
+          "code": "unauthenticated"
+        },
+        {
+          "status": 403,
+          "code": "csrf_invalid"
+        },
+        {
+          "status": 500,
+          "code": "internal_error"
+        },
+        {
+          "status": 404,
+          "code": "post_not_found"
+        }
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/posts/{id}/like",
+      "source": "internal/post/http.go: RegisterRoutes/interact; post.go: Unlike; repository_sqlite.go",
+      "authentication": "Any authenticated account, including unvalidated; cookie writes require CSRF",
+      "pathParams": [
+        {
+          "name": "id",
+          "type": "string",
+          "validation": "trimmed opaque post identity; nonexistent ->404"
+        }
+      ],
+      "queryParams": [],
+      "request": {
+        "body": "not decoded; no JSON body required"
+      },
+      "success": {
+        "status": 200,
+        "body": {
+          "post": "post.Post"
+        },
+        "idempotency": "Repeated operation preserves this account membership; other concurrent likes may change count."
+      },
+      "errors": [
+        {
+          "status": 401,
+          "code": "unauthenticated"
+        },
+        {
+          "status": 403,
+          "code": "csrf_invalid"
+        },
+        {
+          "status": 500,
+          "code": "internal_error"
+        },
+        {
+          "status": 404,
+          "code": "post_not_found"
+        }
+      ]
+    }
+  ],
   "wireContract": {
     "baseUrls": null,
-    "authentication": null,
-    "requestSchemas": null,
-    "responseSchemas": null,
-    "statusCodes": null,
-    "errorEnvelope": null,
-    "pagination": null,
-    "rateLimits": null
+    "authentication": {
+      "source": "internal/platform/authn/authn.go: credentialFromRequest, Require, Optional, resolve; internal/account/http.go: writeSession/clearCookie",
+      "bearer": {
+        "header": "Authorization",
+        "scheme": "Bearer",
+        "schemeCaseSensitive": false,
+        "credential": "opaque string, surrounding whitespace trimmed",
+        "precedence": "recognized bearer before cookie"
+      },
+      "cookie": {
+        "sessionName": "maulid_session",
+        "path": "/",
+        "httpOnly": true,
+        "sameSite": "Lax",
+        "secure": "Handler.cookieSecure (config defaults secure in production and rejects disabling it there)",
+        "maxAge": "integer remaining expiry seconds on issue; -1 on clear",
+        "csrfCookie": "No separate CSRF cookie; token is returned in response JSON."
+      },
+      "csrf": {
+        "header": "X-CSRF-Token",
+        "requiredFor": "cookie-authenticated unsafe methods under Require",
+        "safeMethods": [
+          "GET",
+          "HEAD",
+          "OPTIONS"
+        ],
+        "bearerExempt": true,
+        "comparison": "SHA-256 hex against trusted session record",
+        "provisioning": "csrf_token response field"
+      },
+      "errors": [
+        {
+          "status": 401,
+          "code": "unauthenticated",
+          "when": "missing/unusable credential or Authenticator error"
+        },
+        {
+          "status": 403,
+          "code": "csrf_invalid",
+          "when": "cookie write lacks valid CSRF"
+        }
+      ],
+      "sessionSemantics": "Account service reloads persisted account/current role/status; repository excludes expired/revoked sessions; logout revokes supplied credential idempotently. HTTP endpoints are not wired.",
+      "routeAttachment": "Require on logout, Optional on session; register/login guarded separately",
+      "issuanceRefreshRevocationMessages": {
+        "issue": "register/login sessionResponse",
+        "refresh": "not defined",
+        "revoke": "POST /api/v1/auth/logout"
+      },
+      "optional": "silently resolves valid credentials and otherwise passes anonymous without response writes"
+    },
+    "requestSchemas": [
+      "register",
+      "login",
+      "createPost"
+    ],
+    "responseSchemas": [
+      "account.View",
+      "account.sessionResponse",
+      "post.Post",
+      "posts array envelope",
+      "post object envelope"
+    ],
+    "jsonEncoding": {
+      "source": "internal/platform/httpx/httpx.go: JSON, DecodeJSON",
+      "requestContentType": "application/json; media parameters allowed",
+      "maxBodyBytes": 32768,
+      "unknownFields": "DisallowUnknownFields for typed destinations",
+      "trailingValues": "rejected after first decoded JSON value",
+      "requiredAndNullRules": "Not established by this helper; depend on destination/feature validation.",
+      "responseHeaders": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Cache-Control": "no-store",
+        "X-Content-Type-Options": "nosniff"
+      }
+    },
+    "errorEnvelope": {
+      "source": "internal/platform/httpx/httpx.go: Error",
+      "shape": {
+        "error": {
+          "code": "string",
+          "message": "string"
+        }
+      },
+      "required": [
+        "error",
+        "error.code",
+        "error.message"
+      ],
+      "guidance": "Handle code; message is human-facing Indonesian text."
+    },
+    "statusCodes": [
+      {
+        "status": 400,
+        "code": "invalid_json",
+        "source": "httpx.DecodeJSON/decodeProblem: bad JSON, unknown fields or trailing values"
+      },
+      {
+        "status": 413,
+        "code": "body_too_large",
+        "source": "httpx.decodeProblem: MaxBytesError in initial decode"
+      },
+      {
+        "status": 415,
+        "code": "unsupported_media_type",
+        "source": "httpx.DecodeJSON: wrong media type"
+      },
+      {
+        "status": 500,
+        "code": "internal_error",
+        "source": "httpx.HandleProblem/Recoverer: internal error or panic"
+      }
+    ],
+    "pagination": {
+      "source": "internal/post/http.go: list; post.go: List",
+      "kind": "bounded feed; no cursor/offset/total count",
+      "limit": {
+        "default": 30,
+        "min": 1,
+        "max": 100
+      },
+      "q": "optional, trimmed max100 Unicode runes",
+      "order": "created_at DESC, id DESC"
+    },
+    "rateLimits": {
+      "source": "platform/config/config.go; account/http.go: guard/login; platform/ratelimit/ratelimit.go",
+      "defaultAttempts": 12,
+      "defaultWindowSeconds": 300,
+      "scope": "register:<direct-client-ip> and login:<direct-client-ip> independently; login success resets login key",
+      "deniedStatus": 429,
+      "deniedCode": "rate_limited",
+      "header": "Retry-After: floor(remaining seconds)+1",
+      "configuration": "MAULID_RATE_LIMIT_MAX and MAULID_RATE_LIMIT_WINDOW"
+    },
+    "sessionConfiguration": {
+      "source": "internal/platform/config/config.go; internal/account/credential.go",
+      "defaultTTLSeconds": 604800,
+      "configurableTTLRangeSeconds": [
+        300,
+        2592000
+      ],
+      "credentialGeneration": "32 random bytes, unpadded URL-safe base64; clients should treat credentials as opaque"
+    },
+    "headerPolicy": {
+      "source": "internal/platform/httpx/httpx.go: SecurityHeaders",
+      "routeAttachment": null,
+      "headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+        "Cross-Origin-Opener-Policy": "same-origin"
+      },
+      "conditional": {
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains when secureTransport=true",
+        "Cache-Control": "no-store for /api/ or /healthz path prefixes"
+      }
+    },
+    "originHelper": {
+      "source": "internal/platform/httpx/httpx.go: SameOrigin; internal/account/http.go: guard",
+      "missingOrigin": "allowed",
+      "schemes": [
+        "http",
+        "https"
+      ],
+      "secureMode": "requires https before trusted/host comparison",
+      "malformedOrHostlessOrigin": "rejected",
+      "hostMatch": "case-insensitive match against request Host",
+      "trustedOrigins": "case-insensitive full origin match after trailing slash removal",
+      "routeAttachment": "register/login",
+      "corsResponseHeaders": null
+    },
+    "cookieConfiguration": {
+      "source": "internal/platform/config/config.go",
+      "production": "CookieSecure=true; disabling it in production is rejected by configuration. Actual Set-Cookie endpoint behavior is not implemented.",
+      "development": "CookieSecure defaults false and can be overridden."
+    }
   },
-  "unknownFieldsMeaning": "null means not defined by a provider wire contract at this observation; it does not mean the future API lacks the capability.",
+  "unknownFieldsMeaning": "null means undefined in this dated source snapshot; no inference is made about later provider work or deployed behavior.",
   "consumerState": "The mobile app remains an offline bundled-image reader; no API client, endpoint, authentication or backend dependency is introduced.",
   "contractDiscrepancies": [
     {
@@ -131,7 +882,164 @@
         "docs/plans/initial.plan.md",
         "docs/research/initial.sources.md"
       ],
-      "description": "Principal planning refers to validation_status; research uses is_validated and IsValidated. No implemented or published wire schema resolves the naming or value vocabulary. Mobile consumers must wait for a provider contract."
+      "description": "Approved plan and implementation choose unvalidated/validated; research pending/rejected examples are not adopted."
+    },
+    {
+      "sources": [
+        "internal/account/http.go: session",
+        "internal/account/account.go: View.CreatedAt"
+      ],
+      "description": "GET session builds View without CreatedAt, producing zero timestamp despite real account creation time. Register/login use ToView and include the actual timestamp. Source review only; not fixed or runtime-tested here."
     }
-  ]
+  ],
+  "captureCompletedAt": "2026-11-14T07:20:31.270984+00:00",
+  "sourceTypes": {
+    "account.View": {
+      "source": "internal/account/account.go: View, ToView",
+      "kind": "source-defined JSON representation, not yet attached to an endpoint",
+      "fields": {
+        "id": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "member",
+            "staff"
+          ]
+        },
+        "validation_status": {
+          "type": "string",
+          "enum": [
+            "unvalidated",
+            "validated"
+          ]
+        },
+        "created_at": {
+          "goType": "time.Time",
+          "jsonType": "string",
+          "encoding": "Go time.Time JSON encoding"
+        }
+      },
+      "serialization": "All six fields have JSON tags without omitempty; no nullable fields are declared. View excludes password/session material.",
+      "privacy": "Owner/staff view per source comment; route authorization is not yet implemented."
+    },
+    "account.sessionResponse": {
+      "source": "internal/account/http.go: sessionResponse, writeSession, session",
+      "fields": {
+        "account": {
+          "type": "account.View",
+          "required": true
+        },
+        "csrf_token": {
+          "type": "string",
+          "omittedWhenEmpty": true
+        },
+        "token": {
+          "type": "string",
+          "omittedWhenEmpty": true,
+          "condition": "register/login only, when X-Maulid-Client trimmed case-insensitively equals mobile"
+        },
+        "expires_at": {
+          "goType": "time.Time",
+          "jsonType": "string",
+          "required": true
+        }
+      },
+      "nullability": "No nullable pointers are declared; csrf_token/token use omitempty, other fields always serialize."
+    },
+    "post.Post": {
+      "source": "internal/post/post.go: Post; repository_sqlite.go: selectPost/scanPost",
+      "fields": {
+        "id": "string",
+        "author_id": "string",
+        "author_name": "string",
+        "body": "string",
+        "created_at": "Go time.Time JSON string",
+        "like_count": "integer",
+        "liked_by_me": "boolean"
+      },
+      "serialization": "All seven fields always serialize; no nullable/omitempty fields or private email."
+    }
+  },
+  "serviceInputs": {
+    "source": "internal/account/service.go: Register, normalizeEmail, normalizeName, validatePassword",
+    "kind": "internal service arguments, not a defined JSON request payload",
+    "email": "trimmed and lowercased; nonempty, at most 254 bytes, no whitespace; plain parsed mailbox address",
+    "name": "trimmed; 2-80 Unicode runes; no control characters",
+    "password": "10-128 bytes; NUL rejected",
+    "registrationDefaults": {
+      "role": "member",
+      "validation_status": "unvalidated"
+    },
+    "errorHttpMapping": "account.Handler.writeServiceError: InputError ->400 invalid_input; ErrEmailTaken ->409 email_unavailable; ErrInvalidCredentials ->401 invalid_credentials; other ->500 internal_error."
+  },
+  "persistenceVocabulary": {
+    "source": "internal/platform/database/schema.go",
+    "role": [
+      "member",
+      "staff"
+    ],
+    "validation_status": [
+      "unvalidated",
+      "validated"
+    ],
+    "warning": "Other SQL columns and internal structs are not automatically public API schemas."
+  },
+  "requestSchemas": {
+    "register": {
+      "source": "internal/account/http.go: registerRequest; service.go: Register and normalizers",
+      "fields": {
+        "email": {
+          "type": "string",
+          "requiredForSuccess": true,
+          "validation": "trim/lowercase; plain email, 1-254 bytes, no whitespace"
+        },
+        "name": {
+          "type": "string",
+          "requiredForSuccess": true,
+          "validation": "trim; 2-80 Unicode runes, no control chars"
+        },
+        "password": {
+          "type": "string",
+          "requiredForSuccess": true,
+          "validation": "10-128 bytes, NUL forbidden"
+        }
+      },
+      "unknownFields": "400 invalid_json",
+      "missingOrNullFields": "Decode to empty string; registration validators reject with 400 invalid_input. JSON type mismatches produce 400 invalid_json."
+    },
+    "login": {
+      "source": "internal/account/http.go: loginRequest; service.go: Login",
+      "fields": {
+        "email": {
+          "type": "string",
+          "requiredForSuccess": true,
+          "normalization": "trim and lowercase"
+        },
+        "password": {
+          "type": "string",
+          "requiredForSuccess": true
+        }
+      },
+      "missingOrNullFields": "Empty credentials normally produce 401 invalid_credentials; type mismatch/unknown fields produce 400 invalid_json."
+    },
+    "createPost": {
+      "source": "internal/post/http.go: createRequest; post.go: Create; util.go: containsControl",
+      "body": {
+        "type": "string",
+        "requiredForSuccess": true,
+        "validation": "trim; 10-2000 Unicode runes; controls except newline/tab rejected"
+      },
+      "missingOrNull": "decodes empty; validated authors get400 invalid_input",
+      "unknownFieldsOrTypeMismatch": "400 invalid_json",
+      "ordering": "JSON decode first; current author validation checked before body content validation."
+    }
+  }
 }

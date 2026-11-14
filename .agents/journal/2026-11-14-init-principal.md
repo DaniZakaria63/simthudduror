@@ -56,3 +56,9 @@ Native build/runtime behavior is unchanged by the planned tooling/docs/tests wor
 
 - Validated every relative Markdown target in updated AGENTS/README/architecture/developer guide/journal index; check passed. Scoped `git diff --check` passed. `git diff --exit-code 06e697f -- src android ios` passed, confirming application and native-host source remain identical to the pre-task baseline at this checkpoint.
 - Principal commits these documentation-only workflow rules separately; implementation tests/config, executor journal and final acceptance/push remain pending.
+
+## Final source extraction and acceptance review
+
+- Independent principal checks pass; [acceptance journal](2026-11-14-init-acceptance.md) records every requirement and actual outputs. Created `docs/evidence/init-principal-checks.json` and final advisory `docs/evidence/jev-init-review.json`; updated plan and initialization verification.
+- Provider evolved while being read. Replaced historical empty API assumptions with all8 account/post route contracts from a bounded59-file snapshot at2026-11-14 07:20:31UTC. Read source structs/validators/middleware, documented endpoint auth/status/payload/error/limit details and known source discrepancies. All snapshot fingerprints and exact route-set completeness passed. Future live changes require future re-extraction; no provider execution/edit or mobile client was added. Temporary extraction helpers were private `/tmp` artifacts, not app code.
+- Documentation acceptance is ready; final commit and normal origin push are the remaining delivery actions.

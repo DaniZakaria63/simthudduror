@@ -8,7 +8,7 @@ This prompt establishes engineering conventions for a React Native CLI Android/i
 
 The current source has feature-isolated `home` and `reader` modules, an app/navigation composition root, and shared assets/theme/types. Services, local persistence, state and UI belong to their owning feature when required; empty layers and a global state manager add no value today. Promote a component to `src/shared/components` only when multiple features actually use it. React files use imports/types/constants and hooks/handlers first, JSX next, StyleSheet last; non-React files use a suitable dependency-first structure.
 
-The sole provider `/home/dani/WebstormProjects/maulid.id` is being developed concurrently. The latest dated extraction in `docs/api/inventory.json` inventories all observed files, including its added architecture/design plans, journal and design metadata. These describe intended API behavior and `/api/v1` as a proposed prefix, but define no endpoint methods/resource paths or request/response schemas. There are no application handlers or implemented contracts. Keep planned/domain evidence separate from wire contracts; re-extract from that source before future API integration. The earlier two-file observation is historical, not the current inventory.
+The sole provider `~/WebstormProjects/maulid.id` is under concurrent implementation. The complete dated extraction in `docs/api/inventory.json` captures all eight account/post route declarations, their request/response types, validation/auth/error behavior, and shared transport details from the 2026-11-14 07:20:31 UTC source snapshot (59 files). Source references and fingerprints distinguish implemented declarations, planning, unresolved source issues and unknown runtime wiring. This is an extraction deliverable, not continuous synchronization; re-extract against the provider before future integration.
 
 Pre-existing uncommitted harness files in the original checkout are user work. Leave them intact and use the installed opt-in harness for this task; do not silently add those files to this branch.
 
@@ -23,7 +23,7 @@ Pre-existing uncommitted harness files in the original checkout are user work. L
 | All agentic creation journaled | Add `.agents/journal` index/convention and an initialization entry with changes, commands/results, decisions, limitations and branch/worktree. |
 | React file order | Record imports/variables and logic, then UI, then styles; verify existing components conform. |
 | Unit coverage strictly above 80% | Collect every executable `src/**/*.{ts,tsx}` module (exclude only declaration files); thresholds 81% for statements, branches, functions, lines; meaningful gesture/UI tests, no ignoring difficult paths or mocking the subject under test. Ensure ordinary and CI test commands enforce it. |
-| Sole API provider and complete contract extraction | `docs/api/README.md` plus a machine-readable inventory with provider path, exact inspected files, empty endpoint set, unknown auth/error/pagination/payload fields, source fingerprint, re-extraction procedure; never invent endpoints. |
+| Sole API provider and complete contract extraction | `docs/api/README.md` plus a machine-readable inventory with provider path, exact inspected files, complete dated endpoint/type inventory, unknown auth/error/pagination/payload fields, source fingerprint, re-extraction procedure; never invent endpoints. |
 | Prompt-specific branch/worktree | Dedicated `feat/init-foundation` worktree at `/home/dani/orca/workspaces/simthudduror/init-foundation`, based on the current migrated app commit `06e697f`. |
 | Small commits, named `{feature}: {description}` | Commit documentation, enforcement/testing and verification separately using `foundation:` / `testing:` prefixes. Stage exact files only. |
 | Push completed work | Principal reviews first, then push this branch to origin normally; no force-push. |
@@ -45,3 +45,15 @@ Pre-existing uncommitted harness files in the original checkout are user work. L
 Do not introduce networking, backend implementation, a web/Expo target, a visual redesign, a new state library, speculative folders or a native-platform rewrite. No global agent/Orca database/configuration edits. No secrets in evidence. No claiming prior Android/device evidence as a new run; iOS cannot be compiled on Linux. Native compilation is only necessary if native/build/runtime behavior changes.
 
 This plan is an acceptance checklist, not a claim that implementation has passed. Current results belong in `.agents/journal` and a separate verification record.
+
+
+## Implementation and acceptance evidence
+
+Implementation and independent review are complete; normal origin push is the remaining delivery step at this entry. The source prompt remains verbatim. [Initialization verification](../VERIFICATION-INIT-FOUNDATION.md), [principal check evidence](../evidence/init-principal-checks.json), and the [acceptance journal](../../.agents/journal/2026-11-14-init-acceptance.md) map requirements to observed results.
+
+- Feature boundaries are enabled in normal lint and exercised by 17 valid/22 invalid fixtures, including aliases, normalized paths, re-exports, literal dynamic imports/requires and TypeScript import-equals.
+- All 15 source modules are represented in coverage. Normal/CI Jest each pass 7 suites/102 tests; statements 99.58%, branches 91.86%, functions 100%, lines 99.57%, above the 81% gate. Typecheck, lint, focused rules and formatting pass.
+- `src`, `android` and `ios` are unchanged from `06e697f`. Native/device builds are not claimed for this tooling/docs/test task.
+- Agent/developer rules, prompt-to-plan naming and journaling are documented and committed; all requested references and model/advisory evidence are recorded.
+- API documentation covers all source-declared routes and referenced data contracts in its timestamped provider snapshot; later live-provider work is outside that snapshot and requires future re-extraction. No network client or backend edit was introduced.
+- Work uses `feat/init-foundation` in its dedicated worktree, with scoped `foundation:`/`testing:` commits. Retain the worktree until human merge confirmation. Final push evidence is recorded after the operation succeeds.

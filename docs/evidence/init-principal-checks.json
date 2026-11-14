@@ -1,0 +1,93 @@
+{
+  "kind": "principal-independent-initialization-checks",
+  "observedAt": "2026-11-14 07:27:24 UTC",
+  "reviewedHead": "2fbe941b3bbcba48d8756cbfcc5eb192f8b032f6",
+  "apiObservation": "2026-11-14T07:20:31.260170+00:00",
+  "apiCaptureCompleted": "2026-11-14T07:20:31.270984+00:00",
+  "apiFileCount": 59,
+  "apiRoutes": 8,
+  "checks": [
+    {
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "output": "\n> simtudduror@0.0.1 typecheck\n> tsc --noEmit\n\n"
+    },
+    {
+      "command": "npm run lint",
+      "exitCode": 0,
+      "output": ""
+    },
+    {
+      "command": "npm run test:rules",
+      "exitCode": 0,
+      "output": "\n> simtudduror@0.0.1 test:rules\n> node tools/eslint/test-rules.cjs\n\nno-cross-feature-imports: 17 valid and 22 invalid fixtures passed\n"
+    },
+    {
+      "command": "npm run format:check",
+      "exitCode": 0,
+      "output": "\n> simtudduror@0.0.1 format:check\n> prettier --check \"src/**/*.{ts,tsx}\" \"__tests__/**/*.{js,ts,tsx}\" \"tools/eslint/**/*.{js,cjs}\" \"*.js\" \"*.json\"\n\nChecking formatting...\nAll matched files use Prettier code style!\n"
+    },
+    {
+      "command": "npm test -- --runInBand",
+      "exitCode": 0,
+      "output": "PASS __tests__/eslintBoundaries.test.js\nPASS __tests__/zoomableImage.test.tsx\nPASS __tests__/homeScreen.test.tsx\nPASS __tests__/readerScreen.test.tsx\nPASS __tests__/zoomMath.test.ts\nPASS __tests__/catalog.test.ts\n----------------------------|---------|----------|---------|---------|-------------------\nFile                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s \n----------------------------|---------|----------|---------|---------|-------------------\nAll files                   |   99.58 |    91.86 |     100 |   99.57 |                   \n app                        |     100 |      100 |     100 |     100 |                   \n  App.tsx                   |     100 |      100 |     100 |     100 |                   \n features/home              |       0 |        0 |       0 |       0 |                   \n  index.ts                  |       0 |        0 |       0 |       0 |                   \n features/home/components   |     100 |      100 |     100 |     100 |                   \n  CatalogCard.tsx           |     100 |      100 |     100 |     100 |                   \n features/home/data         |     100 |      100 |     100 |     100 |                   \n  catalog.ts                |     100 |      100 |     100 |     100 |                   \n features/home/screens      |     100 |      100 |     100 |     100 |                   \n  HomeScreen.tsx            |     100 |      100 |     100 |     100 |                   \n features/reader            |       0 |        0 |       0 |       0 |                   \n  index.ts                  |       0 |        0 |       0 |       0 |                   \n features/reader/components |   99.42 |       90 |     100 |   99.41 |                   \n  ZoomableImage.tsx         |   99.42 |       90 |     100 |   99.41 | 269               \n features/reader/lib        |     100 |       95 |     100 |     100 |                   \n  zoomMath.ts               |     100 |       95 |     100 |     100 | 186               \n features/reader/screens    |     100 |      100 |     100 |     100 |                   \n  ReaderScreen.tsx          |     100 |      100 |     100 |     100 |                   \n navigation                 |     100 |      100 |     100 |     100 |                   \n  AppNavigator.tsx          |     100 |      100 |     100 |     100 |                   \n  types.ts                  |       0 |        0 |       0 |       0 |                   \n shared/assets/images       |     100 |      100 |     100 |     100 |                   \n  index.ts                  |     100 |      100 |     100 |     100 |                   \n shared/theme               |     100 |      100 |     100 |     100 |                   \n  index.ts                  |       0 |        0 |       0 |       0 |                   \n  tokens.ts                 |     100 |      100 |     100 |     100 |                   \n shared/types               |       0 |        0 |       0 |       0 |                   \n  catalog.ts                |       0 |        0 |       0 |       0 |                   \n----------------------------|---------|----------|---------|---------|-------------------\n\nTest Suites: 7 passed, 7 total\nTests:       102 passed, 102 total\nSnapshots:   0 total\nTime:        1.489 s, estimated 2 s\nRan all test suites.\n"
+    },
+    {
+      "command": "npm run test:ci -- --runInBand",
+      "exitCode": 0,
+      "output": "PASS __tests__/eslintBoundaries.test.js\nPASS __tests__/zoomableImage.test.tsx\nPASS __tests__/homeScreen.test.tsx\nPASS __tests__/readerScreen.test.tsx\nPASS __tests__/zoomMath.test.ts\nPASS __tests__/catalog.test.ts\n----------------------------|---------|----------|---------|---------|-------------------\nFile                        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s \n----------------------------|---------|----------|---------|---------|-------------------\nAll files                   |   99.58 |    91.86 |     100 |   99.57 |                   \n app                        |     100 |      100 |     100 |     100 |                   \n  App.tsx                   |     100 |      100 |     100 |     100 |                   \n features/home              |       0 |        0 |       0 |       0 |                   \n  index.ts                  |       0 |        0 |       0 |       0 |                   \n features/home/components   |     100 |      100 |     100 |     100 |                   \n  CatalogCard.tsx           |     100 |      100 |     100 |     100 |                   \n features/home/data         |     100 |      100 |     100 |     100 |                   \n  catalog.ts                |     100 |      100 |     100 |     100 |                   \n features/home/screens      |     100 |      100 |     100 |     100 |                   \n  HomeScreen.tsx            |     100 |      100 |     100 |     100 |                   \n features/reader            |       0 |        0 |       0 |       0 |                   \n  index.ts                  |       0 |        0 |       0 |       0 |                   \n features/reader/components |   99.42 |       90 |     100 |   99.41 |                   \n  ZoomableImage.tsx         |   99.42 |       90 |     100 |   99.41 | 269               \n features/reader/lib        |     100 |       95 |     100 |     100 |                   \n  zoomMath.ts               |     100 |       95 |     100 |     100 | 186               \n features/reader/screens    |     100 |      100 |     100 |     100 |                   \n  ReaderScreen.tsx          |     100 |      100 |     100 |     100 |                   \n navigation                 |     100 |      100 |     100 |     100 |                   \n  AppNavigator.tsx          |     100 |      100 |     100 |     100 |                   \n  types.ts                  |       0 |        0 |       0 |       0 |                   \n shared/assets/images       |     100 |      100 |     100 |     100 |                   \n  index.ts                  |     100 |      100 |     100 |     100 |                   \n shared/theme               |     100 |      100 |     100 |     100 |                   \n  index.ts                  |       0 |        0 |       0 |       0 |                   \n  tokens.ts                 |     100 |      100 |     100 |     100 |                   \n shared/types               |       0 |        0 |       0 |       0 |                   \n  catalog.ts                |       0 |        0 |       0 |       0 |                   \n----------------------------|---------|----------|---------|---------|-------------------\n\nTest Suites: 7 passed, 7 total\nTests:       102 passed, 102 total\nSnapshots:   0 total\nTime:        1.436 s, estimated 2 s\n"
+    }
+  ],
+  "tests": {
+    "suites": 7,
+    "passed": 102
+  },
+  "coverage": {
+    "sourceModulesExpected": 15,
+    "missingSourceModules": [],
+    "statements": {
+      "covered": 241,
+      "total": 242,
+      "pct": 99.58
+    },
+    "branches": {
+      "covered": 79,
+      "total": 86,
+      "pct": 91.86
+    },
+    "functions": {
+      "covered": 56,
+      "total": 56,
+      "pct": 100
+    },
+    "lines": {
+      "covered": 236,
+      "total": 237,
+      "pct": 99.57
+    },
+    "thresholdEach": 81
+  },
+  "sourcePreservation": {
+    "baseline": "06e697f",
+    "areas": [
+      "src",
+      "android",
+      "ios"
+    ],
+    "diffExitCode": 0,
+    "promptCmpExitCode": 0
+  },
+  "apiEvidence": {
+    "snapshotFingerprintsVerified": 59,
+    "declaredRoutesMatched": 8,
+    "providerExecuted": false,
+    "continuousSynchronization": false
+  },
+  "delivery": {
+    "status": "pending-normal-push"
+  },
+  "limits": [
+    "Native Android/iOS/device execution not required or rerun for unchanged app/hosts.",
+    "Provider contracts are a dated source extraction, not a deployment or future-source claim."
+  ]
+}
