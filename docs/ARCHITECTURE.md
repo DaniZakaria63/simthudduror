@@ -235,3 +235,15 @@ documented product choices). Each is visible:
    build. The launch screen still carries the React Native template caption.
 7. **Release signing.** `release` uses the template's debug keystore, so the branch produces an
    installable APK but not an upload-ready one; a real keystore is a release-ops follow-up.
+
+## 13. Initialization engineering rules
+
+The [initialization plan](plans/init.plan.md) establishes durable workflow rules without changing this two-screen architecture. [DEVELOPMENT.md](DEVELOPMENT.md) is the detailed guide; [AGENTS.md](../AGENTS.md) is the concise agent entry point.
+
+- Android/iOS remain first-class native targets, supported by the existing shared TypeScript application. No web/Expo conversion or native-host rewrite is implied.
+- Features privately own components, services, local persistence, state and UI management when needed. There are no speculative empty layers or global state. Components used across multiple features belong in `src/shared/components`; existing single-feature components stay private.
+- The local ESLint boundary rule enforces leaf features, bottom-layer shared code and public feature indexes for composition roots. Its allowed/forbidden fixtures are executable, including in ordinary Jest. Aliases must be mirrored in the rule when introduced.
+- React files place imports/types/constants/logic before JSX, with `StyleSheet.create` at the bottom.
+- Full-source Jest coverage has an 81% global floor on statements, branches, functions and lines. Native-boundary test doubles do not prove device behavior.
+- All agentic changes are journaled in [.agents/journal](../.agents/journal/README.md). Every preserved `*.prompt.txt` gets a neighboring same-basename `*.plan.md`; work uses a dedicated branch/worktree, scoped `{feature}: {description}` commits and a normal push after review. Retain worktrees until human merge confirmation.
+- The only endpoint source is `~/WebstormProjects/maulid.id`. The dated [API inventory](api/README.md) records current source evidence, research-only proposals and unknown wire schemas. Initialization introduces no network client.

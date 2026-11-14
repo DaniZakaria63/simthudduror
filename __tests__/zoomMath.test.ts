@@ -152,6 +152,20 @@ describe('focalTranslation', () => {
     ).toEqual(current);
   });
 
+  it('leaves the translation alone when the scale ratio overflows', () => {
+    const current = { x: 5, y: 6 };
+    expect(
+      focalTranslation(
+        { x: 100, y: 100 },
+        { x: 100, y: 100 },
+        VIEWPORT,
+        current,
+        Number.MIN_VALUE,
+        Number.MAX_VALUE,
+      ),
+    ).toEqual(current);
+  });
+
   it('produces no translation at the viewport centre', () => {
     const next = focalTranslation(
       CENTRE,

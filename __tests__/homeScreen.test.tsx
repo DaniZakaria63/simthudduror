@@ -42,4 +42,28 @@ describe('HomeScreen', () => {
       imageKey: 'masjid_sophia',
     });
   });
+
+  it('renders the pressed card feedback', () => {
+    renderHomeScreen();
+    const card = screen.getByTestId('catalog-card-satu');
+
+    fireEvent(card, 'responderGrant', {
+      persist: () => {},
+      nativeEvent: {
+        touches: [],
+        changedTouches: [],
+        identifier: 0,
+        locationX: 0,
+        locationY: 0,
+        pageX: 0,
+        pageY: 0,
+        timestamp: 1,
+        target: 1,
+      },
+    });
+
+    expect(screen.getByTestId('catalog-card-satu')).toHaveStyle({
+      opacity: 0.7,
+    });
+  });
 });
