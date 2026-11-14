@@ -28,7 +28,7 @@ Pre-existing uncommitted harness files in the original checkout are user work. L
 | Small commits, named `{feature}: {description}` | Commit documentation, enforcement/testing and verification separately using `foundation:` / `testing:` prefixes. Stage exact files only. |
 | Push completed work | Principal reviews first, then push this branch to origin normally; no force-push. |
 | Retain worktree until human confirms merge | Keep this worktree after completion; record cleanup condition. |
-| Codex Sol high / OpenCode Go Deepseek Flash high / Antigravity / Jev | Current Codex principal coordinates; installed harness dispatches sole OpenCode executor with actual session-model verification; Antigravity researches references; live Jev advice informs decisions, never grants permission. Do not duplicate principal or alter global defaults. |
+| OpenCode Go DeepSeek high / Codex Sol low-high / Antigravity / Jev | Current OpenCode principal coordinates and reviews; installed harness dispatches the sole Codex implementation worker at low or high effort; Antigravity researches references; live Jev advice informs decisions, never grants permission. This supersedes the source prompt's original Codex-principal assignment after the user's 2026-11-14 role reversal. Do not duplicate principal or alter global defaults. |
 | Read all three RN references | Antigravity retrieves the three prompt URLs and upstream primary docs; records practical guidance and version/applicability caveats under `docs/references`. |
 | Future `*.prompt.txt` → `*.plan.md` | Keep source prompts verbatim; write same-basename interpretation/analysis plan with acceptance evidence before implementation; document in AGENTS and developer guide. |
 

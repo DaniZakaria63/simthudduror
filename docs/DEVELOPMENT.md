@@ -41,7 +41,7 @@ Preserve the Reader's nested transform model: translation outside scale operates
 6. Review all requirements against source and actual check results, then push the completed branch to `origin` normally. A plan, worker intention or green narrow test is not broad acceptance evidence.
 7. Keep the worktree after push. Remove it **only when the human says the branch has been merged**. Do not automatically merge, delete branches or force-push.
 
-For the team explicitly named in this prompt, use the installed opt-in harness and project role boundaries in AGENTS. Codex Sol high owns analysis/review/decisions, OpenCode Go DeepSeek Flash V4.1 high owns implementation, Antigravity owns research, and Jev supplies advisory typed judgments. Verify actual session metadata when model/effort matters. Do not alter global defaults or recursively launch another principal. Future unrelated requests do not automatically opt into orchestration.
+For the team explicitly named in this prompt, use the installed opt-in harness and project role boundaries in AGENTS. The user reversed the source prompt's original assignment on 2026-11-14: OpenCode Go DeepSeek Flash V4.1 high now owns analysis/review/decisions; Codex Sol implements at low or high effort chosen by the principal; Antigravity owns research; Jev supplies advisory typed judgments. Verify actual session metadata when model/effort matters. Do not alter global defaults or recursively launch another principal. Future unrelated requests do not automatically opt into orchestration. See [.agents/skills/project-architecture](../.agents/skills/project-architecture/SKILL.md) and [.agents/skills/orca-team](../.agents/skills/orca-team/SKILL.md).
 
 ## Tests and coverage
 

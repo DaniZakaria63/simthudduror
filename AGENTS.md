@@ -43,12 +43,12 @@ Run checks relevant to the change; never claim an unobserved pass. Ordinary Jest
 
 Use supervised Orca orchestration only when the user/task explicitly asks for the named team, Orca harness, `orca-team`, or supervision. The initialization prompt explicitly requests these roles; do not auto-start agents for unrelated tasks. Read the installed `~/.config/orca-harness/AGENTS.md` and role guide before using it.
 
-- **Codex principal** — Codex Sol, high effort (`gpt-6.1-sol` in the installed launcher): systems analysis, architecture, delegation, review, acceptance. Does not edit app code.
-- **OpenCode implementation** — `opencode-go/deepseek-v4.1-flash#high`: the sole application/config/test executor. Verify actual assistant-session model/variant, not just accepted launch input.
+- **OpenCode principal** — `opencode-go/deepseek-v4.1-flash#high`: systems analysis, architecture, delegation, review, acceptance. Does not edit app code. This supersedes the source prompt's original Codex-principal assignment after the user's 2026-11-14 role reversal.
+- **Codex implementation** — `gpt-6.1-sol` at `low` or `high` effort chosen by the principal: the sole application/config/test executor. Verify the requested effort in the dispatch; the principal reviews the worker's evidence and checks.
 - **Antigravity research** — source research/search/analytics; never edits app code.
 - **Jev by TypeSafe** — typed advisory judgments for decisions; principal owns decisions. Confidence is never permission or proof.
 
-The installed launcher supports `orca-team doctor`, `orca-team implementation --task-file <file>`, `orca-team research --task-file <file>`, `orca-team jev --state-file <file> --json`, and `orca-team verify-session --session <id> --json`. Do not launch a duplicate principal from an existing session. Use native mailbox `ask` / `reply`, report `worker_done` exactly once per task, and let Orca wake the coordinator. No polling scheduler or terminal steering when a mailbox exists. The separate uncommitted harness work in the original checkout is not silently imported into this branch.
+The installed launcher supports `orca-team doctor`, `orca-team principal --task-file <file>`, `orca-team implementation --task-file <file> --effort low|high`, `orca-team research --task-file <file>`, `orca-team jev --state-file <file> --json`, and `orca-team verify-session --session <id> --json`. Do not launch a duplicate principal from an existing session. Use native mailbox `ask` / `reply`, report `worker_done` exactly once per task, and let Orca wake the coordinator. No polling scheduler or terminal steering when a mailbox exists. The separate uncommitted harness work in the original checkout is not silently imported into this branch. Project-local skills live in [.agents/skills](.agents/skills/README.md).
 
 ## Boundaries
 
